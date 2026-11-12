@@ -1,15 +1,37 @@
-# Kopidisni Builder — Starter
+# kopidisini — Website Kedai Kopi (Contoh/Dummy)
 
-Starter web/app builder untuk pemula. Halaman dirender dari data JSON,
-bukan dari HTML yang ditulis manual. Ini fondasi untuk editor
-drag-and-drop di fase berikutnya.
+Website pengenalan kedai kopi kopidisini: tampil modern dan minimalis
+dengan warna utama hitam putih. Tombol pesan mengarah ke halaman
+pesanan (Olsera), jadi website ini tidak punya checkout sendiri.
 
-Stack: Next.js 16 + React 19 + TypeScript + Tailwind CSS 4, dibuat
-dengan `create-next-app`.
+Stack: Next.js 16 + React 19 + TypeScript + Tailwind CSS 4.
+
+## Isi website
+
+- Beranda: perkenalan singkat, alamat, cara pesan, dan Instagram.
+- Signature: 4 menu signature (Es Kopidisini, Es Avanger, Es Kopigudang,
+  Manis Lembut).
+- Menu: 46 menu dari halaman pesanan, bisa difilter per kategori
+  (Kopi, Non Kopi, JajanDisini). Nama dan harga disalin dari
+  https://kopdis.antarinmakan.com (dicek 2026-11-12).
+- Lokasi: alamat kedai dan 4 cara pesan (Take Away, Delivery,
+  Dine In, Reservasi).
+
+## Yang masih dummy
+
+- Jam buka: belum tersedia, tertulis "akan diumumkan di sini".
+- Foto kedai/produk dan logo: belum ada, diganti kotak placeholder.
+- Nomor WhatsApp: belum tersedia.
+
+Kirim jam buka, foto, dan logo kalau sudah ada, supaya bisa dipasang.
 
 ## Cara menjalankan
 
+Butuh Node.js LTS dan Git terpasang di laptop.
+
 ```bash
+git clone https://github.com/Diky-ai/project-kopidisni.git
+cd project-kopidisni
 npm install
 npm run dev
 ```
@@ -19,70 +41,22 @@ Buka http://localhost:3000 di browser.
 Perintah lain:
 
 ```bash
-npm run build   # build produksi, sekaligus cek TypeScript
-npm run lint    # cek gaya dan masalah umum di kode
+npm run build   # build produksi
+npm run lint    # cek lint
 ```
 
-## Coba ubah halamannya
+## Struktur
 
-1. Buka `src/data/example-page.json`.
-2. Ubah salah satu teksnya, lalu simpan.
-3. Lihat halaman di browser ikut berubah (halaman ter-update otomatis).
+- `src/app/page.tsx` — seluruh halaman beranda (header, hero, tentang,
+  signature, lokasi, footer).
+- `src/components/MenuSection.tsx` — daftar menu dengan filter kategori.
+- `src/data/menu.ts` — data 46 menu dan harga.
+- `src/lib/site.ts` — link pemesanan, Instagram, alamat, dan cara pesan.
+- `src/components/builder/`, `src/lib/types.ts`, `src/data/example-page.json`
+  — sisa starter web/app builder sebelumnya, tidak dipakai halaman ini.
+  Riwayatnya tetap tersimpan di Git.
 
-Tidak perlu mengubah komponen apa pun untuk mengubah isi halaman.
-Itulah pola dasar builder: data berubah, tampilan ikut berubah.
+## Catatan
 
-## Struktur folder
-
-```
-src/
-  app/
-    page.tsx            Halaman utama, menampilkan hasil render
-    layout.tsx          Kerangka HTML dasar semua halaman
-    globals.css         Gaya dasar Tailwind
-  components/builder/
-    Renderer.tsx        Membaca daftar blok, menampilkan komponennya
-    HeadingBlock.tsx    Blok judul
-    TextBlock.tsx       Blok teks
-    ButtonBlock.tsx     Blok tombol
-    ImageBlock.tsx      Blok gambar
-  lib/
-    types.ts            Bentuk data halaman dan blok (TypeScript)
-  data/
-    example-page.json   Contoh 1 landing page dalam JSON
-```
-
-Penjelasan tiap file ada di komentar di dalam kodenya, dalam
-Bahasa Indonesia.
-
-## Bentuk data halaman
-
-```json
-{
-  "title": "Landing page contoh",
-  "blocks": [
-    { "id": "1", "type": "heading", "text": "Selamat datang", "size": "large" },
-    { "id": "2", "type": "text", "text": "Ini halaman yang dibuat dari JSON." },
-    { "id": "3", "type": "button", "text": "Mulai", "href": "#" }
-  ]
-}
-```
-
-Tipe blok yang didukung starter ini: `heading`, `text`, `button`,
-dan `image`. Menambah tipe blok baru berarti menambah 1 jenis di
-`src/lib/types.ts`, 1 komponen di `src/components/builder/`, dan
-1 cabang di `Renderer.tsx`.
-
-## Supabase (belum dipakai)
-
-File `.env.example` berisi nama variabel Supabase yang akan dipakai
-nanti. Salin menjadi `.env.local` dan isi nilai aslinya di sana
-saat fase penyimpanan tiba. Jangan commit `.env.local` atau key
-asli apa pun ke Git.
-
-## Yang belum ada (sengaja)
-
-Starter ini belum punya editor drag-and-drop, login, penyimpanan
-ke database, dan tombol publish. Itu fase berikutnya, setelah pola
-JSON dan renderer ini dipahami. Roadmap lengkapnya ada di
-percakapan perencanaan project ini.
+- Font memakai font sistem (Arial/Helvetica), tanpa unduhan font eksternal.
+- Jangan commit file `.env.local` atau key asli apa pun. Repo ini publik.

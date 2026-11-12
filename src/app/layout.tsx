@@ -7,8 +7,9 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Kopidisni Builder — Starter",
-  description: "Starter web/app builder: halaman dirender dari data JSON.",
+  title: "kopidisini — Kopi enak, di sini.",
+  description:
+    "kopidisini, kedai kopi di Aceh Utara. Lihat menu kopi, non kopi, dan JajanDisini, lalu pesan lewat halaman pesanan kami.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
