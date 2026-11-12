@@ -20,15 +20,14 @@ export default function MenuSection() {
 
   return (
     <section id="menu" className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
-      <div className="flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">
-            Menu
-          </p>
-          <h2 className="mt-3 text-4xl font-black tracking-tight text-black sm:text-5xl">
-            Pilih favoritmu.
-          </h2>
-        </div>
+      <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
+        <span aria-hidden="true" className="h-px w-10 bg-zinc-300" />
+        03 &middot; Menu
+      </p>
+      <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
+        <h2 className="font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
+          Pilih <em className="font-normal">favoritmu.</em>
+        </h2>
         <p className="max-w-sm text-sm leading-relaxed text-zinc-600">
           Harga dari halaman pesanan kami. Klik Pesan untuk lanjut memesan
           lewat halaman pesanan.
@@ -36,7 +35,7 @@ export default function MenuSection() {
       </div>
 
       <div
-        className="mt-10 flex flex-wrap gap-2"
+        className="mt-12 flex flex-wrap gap-x-8 gap-y-2 border-b border-zinc-200"
         role="tablist"
         aria-label="Filter menu"
       >
@@ -51,8 +50,8 @@ export default function MenuSection() {
               onClick={() => setFilter(option.value)}
               className={
                 active
-                  ? "rounded-full bg-black px-5 py-2 text-sm font-semibold text-white"
-                  : "rounded-full border border-zinc-300 bg-white px-5 py-2 text-sm font-semibold text-black transition-colors hover:border-black"
+                  ? "-mb-px border-b-2 border-black pb-3 text-sm font-bold text-black"
+                  : "-mb-px border-b-2 border-transparent pb-3 text-sm font-bold text-zinc-400 transition-colors hover:text-black"
               }
             >
               {option.label}
@@ -61,46 +60,46 @@ export default function MenuSection() {
         })}
       </div>
 
-      <ul className="mt-10 grid gap-px overflow-hidden border border-zinc-200 bg-zinc-200 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-4 grid gap-x-12 lg:grid-cols-2">
         {visible.map((item) => (
           <li
             key={item.name}
-            className="flex flex-col justify-between gap-6 bg-white p-6"
+            className="-mx-2 flex items-baseline gap-4 border-b border-zinc-100 px-2 py-5 transition-colors hover:bg-zinc-50"
           >
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-400">
-                  {item.category}
-                </span>
+            <div className="min-w-0">
+              <h3 className="font-display text-xl font-normal leading-snug">
+                {item.name}
+              </h3>
+              <p className="mt-1 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+                {item.category}
                 {item.signature ? (
-                  <span className="rounded-full bg-black px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
+                  <span className="rounded-full bg-black px-2 py-0.5 normal-case tracking-normal text-white">
                     Signature
                   </span>
                 ) : null}
-              </div>
-              <h3 className="mt-3 text-lg font-bold leading-snug text-black">
-                {item.name}
-              </h3>
+              </p>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-base font-bold text-black">
-                {formatPrice(item.price)}
-              </span>
-              <a
-                href={ORDER_URL}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Pesan ${item.name}`}
-                className="rounded-full border border-black px-4 py-1.5 text-sm font-semibold text-black transition-colors hover:bg-black hover:text-white"
-              >
-                Pesan
-              </a>
-            </div>
+            <span
+              aria-hidden="true"
+              className="mx-1 min-w-6 flex-1 border-b border-dotted border-zinc-300"
+            />
+            <span className="shrink-0 text-base font-bold tabular-nums">
+              {formatPrice(item.price)}
+            </span>
+            <a
+              href={ORDER_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Pesan ${item.name}`}
+              className="shrink-0 text-sm font-bold underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-black"
+            >
+              Pesan
+            </a>
           </li>
         ))}
       </ul>
 
-      <p className="mt-6 text-sm text-zinc-500">
+      <p className="mt-8 text-sm text-zinc-500">
         Menampilkan {visible.length} dari {MENU_ITEMS.length} menu.
       </p>
     </section>

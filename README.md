@@ -58,5 +58,5 @@ npm run lint    # cek lint
 
 ## Catatan
 
-- Font memakai font sistem (Arial/Helvetica), tanpa unduhan font eksternal.
+- Tipografi: Fraunces (judul, serif) dan Manrope (teks, sans) lewat `next/font/google`. File font diunduh sekali saat `npm run dev` / `npm run build` pertama (butuh internet), lalu disajikan lokal. Kalau unduhan gagal, CSS memakai font sistem cadangan (Georgia/Arial).
 - Jangan commit file `.env.local` atau key asli apa pun. Repo ini publik.
