@@ -26,7 +26,28 @@ Stack: Next.js 16 + React 19 + TypeScript + Tailwind CSS 4.
 - Di HP: ada navigasi bawah (Beranda, Tentang, Menu, Lokasi, Pesan)
   ala aplikasi.
 
-## PWA
+## Deploy ke hosting cPanel (rumahweb)
+
+Situs ini memakai export statis (`output: "export"` di
+`next.config.ts`), jadi tidak butuh server Node.js di hosting.
+
+```bash
+npm run build   # menghasilkan folder `out/` berisi HTML/CSS/JS murni
+```
+
+Unggah **isi** folder `out/` (bukan foldernya) ke `public_html` lewat
+File Manager cPanel atau FTP. Untuk staging yang belum dipublish,
+unggah ke subdomain atau subfolder tersendiri, misalnya
+`staging.namadomain.com` atau `public_html/staging/`.
+
+Sebelum build, letakkan file logo dan ikon PWA di `public/` supaya
+ikut tersalin ke `out/`: `logo.png`, `logo-mark.png`,
+`icon-192x192.png`, `icon-512x512.png`, `icon-maskable-512x512.png`,
+dan `apple-touch-icon.png`.
+
+Catatan: optimasi gambar `next/image` dimatikan (`unoptimized: true`)
+karena butuh server Node.js. URL foto Pexels sudah membawa parameter
+ukuran, jadi foto tetap dimuat dalam ukuran yang sesuai.
 
 Situs ini disiapkan sebagai Progressive Web App: `src/app/manifest.ts`
 menyediakan manifest (nama, warna tema hitam, tampilan standalone) dan

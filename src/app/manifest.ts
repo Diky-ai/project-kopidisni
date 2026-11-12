@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 
+// Wajib untuk `output: "export"`: manifest harus dinyatakan statis.
+export const dynamic = "force-static";
+
 // Manifest PWA kopidisini. Ikon PNG (192, 512, maskable) dan
 // apple-touch-icon dibuat terpisah dan perlu diletakkan di public/
 // lewat git, karena push snapshot tidak menerima file biner.
