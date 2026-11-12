@@ -28,14 +28,19 @@ Stack: Next.js 16 + React 19 + TypeScript + Tailwind CSS 4.
 
 Situs ini disiapkan sebagai Progressive Web App: `src/app/manifest.ts`
 menyediakan manifest (nama, warna tema hitam, tampilan standalone) dan
-`src/app/icon.svg` menjadi ikon cadangan. Supaya prompt instalasi muncul
-di Android/iOS, ikon PNG berikut perlu diletakkan di `public/` lewat git
-(push snapshot tidak menerima file biner):
+`src/app/icon.svg` menjadi ikon cadangan. Ikon PNG dan file logo resmi
+perlu diletakkan di `public/` lewat git (push snapshot tidak menerima
+file biner):
 
+- `logo.png` (logo lengkap) dan `logo-mark.png` (tanda pin saja, untuk
+  header) — dibuat dari logo resmi kopidisini.
 - `icon-192x192.png`, `icon-512x512.png`, `icon-maskable-512x512.png`
 - `apple-touch-icon.png` (180x180, untuk iOS)
 
-Dukungan offline (service worker) belum ditambahkan.
+Supaya prompt instalasi muncul di Android/iOS, keempat ikon PNG harus
+ada. Kalau file logonya belum ada, header dan footer otomatis
+menampilkan teks sebagai pengganti. Dukungan offline (service worker)
+belum ditambahkan.
 
 ## Yang masih dummy
 
@@ -73,9 +78,13 @@ npm run lint    # cek lint
 - `src/app/page.tsx` — seluruh halaman beranda (header, hero, statistik,
   pilar, tentang, signature, kategori, lokasi, footer).
 - `src/app/manifest.ts` — manifest PWA. `src/app/icon.svg` — ikon aplikasi.
-- `src/components/MenuSection.tsx` — daftar menu dengan filter kategori.
+- `src/components/MenuSection.tsx` — daftar menu berupa kartu bergambar
+  dengan filter kategori.
 - `src/components/BottomNav.tsx` — navigasi bawah khusus HP.
-- `src/data/menu.ts` — data 46 menu dan harga.
+- `src/components/LogoImage.tsx` — logo resmi dengan fallback teks.
+- `src/components/Reveal.tsx` — animasi muncul saat di-scroll.
+- `src/data/menu.ts` — data 46 menu dan harga, plus pemetaan gambar
+  ilustrasi tiap menu.
 - `src/lib/site.ts` — link pemesanan, Instagram, alamat, cara pesan,
   dan daftar gambar ilustrasi.
 - `src/components/builder/`, `src/lib/types.ts`, `src/data/example-page.json`
@@ -84,5 +93,12 @@ npm run lint    # cek lint
 
 ## Catatan
 
-- Tipografi: Fraunces (judul, serif) dan Manrope (teks, sans) lewat `next/font/google`. File font diunduh sekali saat `npm run dev` / `npm run build` pertama (butuh internet), lalu disajikan lokal. Kalau unduhan gagal, CSS memakai font sistem cadangan (Georgia/Arial).
+- Tipografi: hanya 2 font web, Fraunces (judul, serif) dan Manrope
+  (teks, sans), lewat `next/font/google` — sesuai batas maksimal 3 font.
+  File font diunduh sekali saat `npm run dev` / `npm run build` pertama
+  (butuh internet), lalu disajikan lokal. Kalau unduhan gagal, CSS
+  memakai font sistem cadangan (Georgia/Arial).
+- Animasi: reveal saat scroll, animasi masuk hero, animasi ganti filter
+  menu, dan efek hover/aktif pada kartu dan tombol. Semua dimatikan
+  otomatis untuk pengguna yang mengaktifkan prefers-reduced-motion.
 - Jangan commit file `.env.local` atau key asli apa pun. Repo ini publik.

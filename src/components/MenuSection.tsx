@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { MENU_ITEMS, formatPrice, type MenuCategory } from "@/data/menu";
+import Image from "next/image";
+import {
+  MENU_ITEMS,
+  formatPrice,
+  imageForMenuItem,
+  type MenuCategory,
+} from "@/data/menu";
 import { ORDER_URL } from "@/lib/site";
 
 const FILTERS: Array<{ label: string; value: MenuCategory | "SEMUA" }> = [
@@ -60,50 +66,63 @@ export default function MenuSection() {
         })}
       </div>
 
-      <ul className="mt-4 grid gap-x-12 lg:grid-cols-2">
-        {visible.map((item) => (
-          <li
-            key={item.name}
-            className="-mx-2 flex flex-col gap-3 border-b border-zinc-100 px-2 py-5 transition-colors hover:bg-zinc-50 sm:flex-row sm:items-baseline sm:gap-4"
-          >
-            <div className="min-w-0">
-              <h3 className="font-display text-xl font-normal leading-snug">
-                {item.name}
-              </h3>
-              <p className="mt-1 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
-                {item.category}
+      <ul
+        key={filter}
+        className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4"
+      >
+        {visible.map((item, index) => {
+          const image = imageForMenuItem(item);
+          return (
+            <li
+              key={item.name}
+              style={{ animationDelay: `${Math.min(index, 7) * 50}ms` }}
+              className="menu-card-enter group overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={image.src}
+                  alt={`${item.name} (ilustrasi)`}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
                 {item.signature ? (
-                  <span className="rounded-full bg-kopi px-2 py-0.5 normal-case tracking-normal text-white">
+                  <span className="absolute left-3 top-3 rounded-full bg-kopi px-2.5 py-1 text-[11px] font-bold text-white shadow-sm">
                     Signature
                   </span>
                 ) : null}
-              </p>
-            </div>
-            <span
-              aria-hidden="true"
-              className="mx-1 hidden min-w-6 flex-1 border-b border-dotted border-zinc-300 sm:block"
-            />
-            <div className="flex items-center gap-4">
-              <span className="shrink-0 text-base font-bold tabular-nums">
-                {formatPrice(item.price)}
-              </span>
-              <a
-                href={ORDER_URL}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Pesan ${item.name}`}
-                className="shrink-0 py-1 text-sm font-bold underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-kopi"
-              >
-                Pesan
-              </a>
-            </div>
-          </li>
-        ))}
+              </div>
+              <div className="p-4">
+                <h3 className="font-display text-lg font-normal leading-snug">
+                  {item.name}
+                </h3>
+                <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+                  {item.category}
+                </p>
+                <div className="mt-4 flex items-center justify-between gap-3">
+                  <span className="text-base font-bold tabular-nums">
+                    {formatPrice(item.price)}
+                  </span>
+                  <a
+                    href={ORDER_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Pesan ${item.name}`}
+                    className="shrink-0 rounded-full bg-black px-4 py-2 text-xs font-bold text-white transition-all hover:opacity-80 active:scale-95"
+                  >
+                    Pesan
+                  </a>
+                </div>
+              </div>
+            </li>
+          );
+        })}
       </ul>
 
       <p className="mt-8 text-sm text-zinc-500">
-        Menampilkan {visible.length} dari {MENU_ITEMS.length} menu. Bubuk dan
-        biji kopi tersedia dalam kemasan 250g, 500g, dan 1000g.
+        Menampilkan {visible.length} dari {MENU_ITEMS.length} menu. Foto
+        ilustrasi, bukan foto asli kedai. Bubuk dan biji kopi tersedia dalam
+        kemasan 250g, 500g, dan 1000g.
       </p>
     </section>
   );

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import BottomNav from "@/components/BottomNav";
+import LogoImage from "@/components/LogoImage";
 import MenuSection from "@/components/MenuSection";
+import Reveal from "@/components/Reveal";
 import { MENU_ITEMS, SIGNATURE_ITEMS, formatPrice } from "@/data/menu";
 import {
   ADDRESS,
@@ -100,9 +102,25 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
           <a
             href="#beranda"
-            className="font-display text-2xl font-semibold lowercase tracking-tight"
+            className="flex items-center gap-2.5"
+            aria-label="kopidisini, kembali ke beranda"
           >
-            kopidisini<span className="text-kopi">.</span>
+            <LogoImage
+              src="/logo-mark.png"
+              alt=""
+              width={512}
+              height={512}
+              priority
+              className="h-10 w-10"
+              fallback={
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black font-display text-xl font-semibold text-white">
+                  k<span className="text-kopi-soft">.</span>
+                </span>
+              }
+            />
+            <span className="text-xl font-extrabold lowercase tracking-tight">
+              kopidisini<span className="text-kopi">.</span>
+            </span>
           </a>
           <nav
             aria-label="Navigasi utama"
@@ -122,7 +140,7 @@ export default function Home() {
             href={ORDER_URL}
             target="_blank"
             rel="noreferrer"
-            className="whitespace-nowrap rounded-full bg-black px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-80"
+            className="whitespace-nowrap rounded-full bg-black px-5 py-2.5 text-sm font-bold text-white transition-all hover:opacity-80 active:scale-95"
           >
             Pesan Sekarang
             <span aria-hidden="true"> &rarr;</span>
@@ -137,24 +155,35 @@ export default function Home() {
         >
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <Eyebrow>Kedai kopi &amp; billiard &middot; Aceh Utara</Eyebrow>
-              <h1 className="mt-8 font-display text-6xl font-light leading-[0.95] tracking-[-0.02em] sm:text-7xl xl:text-8xl">
+              <div className="animate-rise">
+                <Eyebrow>Kedai kopi &amp; billiard &middot; Aceh Utara</Eyebrow>
+              </div>
+              <h1
+                className="animate-rise mt-8 font-display text-6xl font-light leading-[0.95] tracking-[-0.02em] sm:text-7xl xl:text-8xl"
+                style={{ animationDelay: "80ms" }}
+              >
                 Kopi enak,
                 <br />
                 <em className="font-normal text-kopi">di sini.</em>
               </h1>
-              <p className="mt-8 max-w-md text-lg leading-relaxed text-zinc-600">
+              <p
+                className="animate-rise mt-8 max-w-md text-lg leading-relaxed text-zinc-600"
+                style={{ animationDelay: "160ms" }}
+              >
                 kopidisini adalah ruang berkumpul modern: kopi premium racikan
                 barista dan meja billiard yang nyaman dalam satu tempat. Untuk
                 nongkrong, bekerja, bersantai, dan main bersama. Di sini,
                 semua bisa.
               </p>
-              <div className="mt-10 flex flex-wrap items-center gap-6">
+              <div
+                className="animate-rise mt-10 flex flex-wrap items-center gap-6"
+                style={{ animationDelay: "240ms" }}
+              >
                 <a
                   href={ORDER_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-80"
+                  className="rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-all hover:opacity-80 active:scale-95"
                 >
                   Pesan Sekarang
                   <span aria-hidden="true"> &rarr;</span>
@@ -166,11 +195,17 @@ export default function Home() {
                   Lihat Menu
                 </a>
               </div>
-              <p className="mt-10 text-sm font-bold tracking-[0.25em] text-kopi">
+              <p
+                className="animate-rise mt-10 text-sm font-bold tracking-[0.25em] text-kopi"
+                style={{ animationDelay: "320ms" }}
+              >
                 #SEMUABISADISINI
               </p>
             </div>
-            <div className="lg:col-span-5">
+            <div
+              className="animate-rise lg:col-span-5"
+              style={{ animationDelay: "200ms" }}
+            >
               <figure className="relative">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] sm:aspect-[5/4] lg:aspect-[4/5]">
                   <Image
@@ -245,26 +280,28 @@ export default function Home() {
           className="mx-auto w-full max-w-6xl px-6 py-14 sm:py-16"
         >
           <ul className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
-            {PILLARS.map((pillar) => (
+            {PILLARS.map((pillar, index) => (
               <li key={pillar.name}>
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-8 w-8 text-kopi"
-                >
-                  {pillar.icon}
-                </svg>
-                <h2 className="mt-4 text-base font-bold sm:text-lg">
-                  {pillar.name}
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-                  {pillar.description}
-                </p>
+                <Reveal delay={index * 90}>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-8 w-8 text-kopi"
+                  >
+                    {pillar.icon}
+                  </svg>
+                  <h2 className="mt-4 text-base font-bold sm:text-lg">
+                    {pillar.name}
+                  </h2>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                    {pillar.description}
+                  </p>
+                </Reveal>
               </li>
             ))}
           </ul>
@@ -292,7 +329,7 @@ export default function Home() {
         <section id="tentang" className="bg-cream">
           <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-              <div>
+              <Reveal>
                 <Eyebrow>01 &middot; Tentang</Eyebrow>
                 <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
                   Dari kamar kecil, untuk semua yang{" "}
@@ -319,8 +356,8 @@ export default function Home() {
                     magang.
                   </p>
                 </div>
-              </div>
-              <div className="lg:pt-16">
+              </Reveal>
+              <Reveal delay={120} className="lg:pt-16">
                 <div className="grid grid-cols-2 gap-4">
                   <figure>
                     <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
@@ -354,10 +391,10 @@ export default function Home() {
                 <p className="mt-4 text-sm text-zinc-500">
                   Foto ilustrasi. Foto asli kedai menyusul.
                 </p>
-              </div>
+              </Reveal>
             </div>
 
-            <div className="mt-20">
+            <Reveal className="mt-20">
               <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
                 Yang kami pegang
               </h3>
@@ -377,7 +414,7 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           </div>
         </section>
 
@@ -403,25 +440,27 @@ export default function Home() {
                   key={item.name}
                   className="group border-t border-zinc-800 pt-6 transition-colors"
                 >
-                  <span className="font-display text-5xl font-light text-zinc-600 transition-colors group-hover:text-zinc-300">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-6 font-display text-2xl font-normal leading-snug">
-                    {item.name}
-                  </h3>
-                  <p className="mt-3 text-base font-bold tabular-nums text-zinc-300">
-                    {formatPrice(item.price)}
-                  </p>
-                  <a
-                    href={ORDER_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Pesan ${item.name}`}
-                    className="mt-5 inline-block text-sm font-bold underline decoration-zinc-600 underline-offset-8 transition-colors hover:decoration-white"
-                  >
-                    Pesan
-                    <span aria-hidden="true"> &rarr;</span>
-                  </a>
+                  <Reveal delay={index * 90}>
+                    <span className="font-display text-5xl font-light text-zinc-600 transition-colors group-hover:text-zinc-300">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-6 font-display text-2xl font-normal leading-snug">
+                      {item.name}
+                    </h3>
+                    <p className="mt-3 text-base font-bold tabular-nums text-zinc-300">
+                      {formatPrice(item.price)}
+                    </p>
+                    <a
+                      href={ORDER_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Pesan ${item.name}`}
+                      className="mt-5 inline-block text-sm font-bold underline decoration-zinc-600 underline-offset-8 transition-colors hover:decoration-white"
+                    >
+                      Pesan
+                      <span aria-hidden="true"> &rarr;</span>
+                    </a>
+                  </Reveal>
                 </li>
               ))}
             </ul>
@@ -440,37 +479,39 @@ export default function Home() {
             Mulai dari <em className="font-normal text-kopi">kategorinya.</em>
           </h2>
           <ul className="mt-12 grid gap-4 sm:grid-cols-3">
-            {CATEGORY_CARDS.map((card) => {
+            {CATEGORY_CARDS.map((card, index) => {
               const count = MENU_ITEMS.filter(
                 (item) => item.category === card.category,
               ).length;
               return (
                 <li key={card.category}>
-                  <a
-                    href="#menu"
-                    className="group relative block aspect-[16/10] overflow-hidden rounded-3xl sm:aspect-[3/4]"
-                  >
-                    <Image
-                      src={card.image.src}
-                      alt={card.image.alt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"
-                    />
-                    <span className="absolute inset-x-0 bottom-0 p-6 text-white">
-                      <span className="block font-display text-3xl font-normal">
-                        {card.title}
+                  <Reveal delay={index * 100}>
+                    <a
+                      href="#menu"
+                      className="group relative block aspect-[16/10] overflow-hidden rounded-3xl sm:aspect-[3/4]"
+                    >
+                      <Image
+                        src={card.image.src}
+                        alt={card.image.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"
+                      />
+                      <span className="absolute inset-x-0 bottom-0 p-6 text-white">
+                        <span className="block font-display text-3xl font-normal">
+                          {card.title}
+                        </span>
+                        <span className="mt-2 block text-sm font-bold">
+                          {count} menu &middot; Lihat menu{" "}
+                          <span aria-hidden="true">&rarr;</span>
+                        </span>
                       </span>
-                      <span className="mt-2 block text-sm font-bold">
-                        {count} menu &middot; Lihat menu{" "}
-                        <span aria-hidden="true">&rarr;</span>
-                      </span>
-                    </span>
-                  </a>
+                    </a>
+                  </Reveal>
                 </li>
               );
             })}
@@ -488,7 +529,7 @@ export default function Home() {
               <em className="font-normal text-kopi">mana saja.</em>
             </h2>
             <div className="mt-14 grid gap-12 lg:grid-cols-2">
-              <div>
+              <Reveal>
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
                   Alamat kedai
                 </h3>
@@ -516,30 +557,32 @@ export default function Home() {
                   href={ORDER_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-8 inline-block rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-80"
+                  className="mt-8 inline-block rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-all hover:opacity-80 active:scale-95"
                 >
                   Pesan Sekarang
                   <span aria-hidden="true"> &rarr;</span>
                 </a>
-              </div>
-              <ul>
-                {ORDER_MODES.map((mode, index) => (
-                  <li
-                    key={mode.name}
-                    className="flex gap-6 border-t border-zinc-200 py-6 last:border-b"
-                  >
-                    <span className="font-display text-lg font-light text-zinc-400">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="text-base font-bold">{mode.name}</h3>
-                      <p className="mt-1 text-base leading-relaxed text-zinc-600">
-                        {mode.description}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              </Reveal>
+              <Reveal delay={120}>
+                <ul>
+                  {ORDER_MODES.map((mode, index) => (
+                    <li
+                      key={mode.name}
+                      className="flex gap-6 border-t border-zinc-200 py-6 last:border-b"
+                    >
+                      <span className="font-display text-lg font-light text-zinc-400">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3 className="text-base font-bold">{mode.name}</h3>
+                        <p className="mt-1 text-base leading-relaxed text-zinc-600">
+                          {mode.description}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -547,9 +590,18 @@ export default function Home() {
 
       <footer className="bg-black text-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-20">
-          <p className="font-display text-6xl font-light lowercase tracking-[-0.02em] sm:text-7xl">
-            kopidisini<em className="font-normal text-kopi-soft">.</em>
-          </p>
+          <LogoImage
+            src="/logo.png"
+            alt="Logo kopidisini"
+            width={1400}
+            height={426}
+            className="h-auto w-full max-w-md"
+            fallback={
+              <p className="font-display text-6xl font-light lowercase tracking-[-0.02em] sm:text-7xl">
+                kopidisini<em className="font-normal text-kopi-soft">.</em>
+              </p>
+            }
+          />
           <p className="mt-6 text-sm font-bold uppercase tracking-[0.25em] text-zinc-400">
             Kopi &amp; billiard dalam satu tempat &middot; #Semuabisadisini
           </p>

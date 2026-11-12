@@ -50,7 +50,7 @@ export default function BottomNav() {
           <li key={item.href}>
             <a
               href={item.href}
-              className="flex min-h-14 flex-col items-center justify-center gap-1 px-1 text-[11px] font-bold text-zinc-700"
+              className="flex min-h-14 flex-col items-center justify-center gap-1 px-1 text-[11px] font-bold text-zinc-700 transition-transform active:scale-90"
             >
               <svg
                 aria-hidden="true"
@@ -73,7 +73,7 @@ export default function BottomNav() {
             href={ORDER_URL}
             target="_blank"
             rel="noreferrer"
-            className="flex min-h-14 flex-col items-center justify-center gap-1 bg-black px-1 text-[11px] font-bold text-white"
+            className="flex min-h-14 flex-col items-center justify-center gap-1 bg-black px-1 text-[11px] font-bold text-white transition-transform active:scale-95"
           >
             <svg
               aria-hidden="true"
