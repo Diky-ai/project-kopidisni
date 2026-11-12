@@ -1,11 +1,14 @@
+import Image from "next/image";
 import MenuSection from "@/components/MenuSection";
 import { SIGNATURE_ITEMS, formatPrice } from "@/data/menu";
 import {
   ADDRESS,
+  IMAGES,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
   ORDER_MODES,
   ORDER_URL,
+  VALUES,
 } from "@/lib/site";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -59,7 +62,7 @@ export default function Home() {
           id="beranda"
           className="mx-auto w-full max-w-6xl px-6 pb-20 pt-16 sm:pb-28 sm:pt-24"
         >
-          <Eyebrow>Kedai kopi &middot; Aceh Utara</Eyebrow>
+          <Eyebrow>Kedai kopi &amp; billiard &middot; Aceh Utara</Eyebrow>
           <h1 className="mt-8 max-w-4xl font-display text-7xl font-light leading-[0.95] tracking-[-0.02em] sm:text-8xl lg:text-9xl">
             Kopi enak,
             <br />
@@ -67,9 +70,10 @@ export default function Home() {
           </h1>
           <div className="mt-10 flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
             <p className="max-w-md text-lg leading-relaxed text-zinc-600">
-              kopidisini adalah kedai kopi untuk nongkrong santai dan
-              menyeruput kopi favoritmu. Pesan dari mana saja, lalu ambil di
-              kedai, diantar, atau nikmati langsung di tempat.
+              kopidisini adalah ruang berkumpul modern: kopi premium racikan
+              barista dan meja billiard yang nyaman dalam satu tempat. Untuk
+              nongkrong, bekerja, bersantai, dan main bersama. Di sini, semua
+              bisa.
             </p>
             <div className="flex shrink-0 flex-wrap items-center gap-6">
               <a
@@ -89,7 +93,10 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <dl className="mt-20 grid gap-8 border-t border-zinc-200 pt-8 sm:grid-cols-3">
+          <p className="mt-10 text-sm font-bold tracking-[0.25em]">
+            #SEMUABISADISINI
+          </p>
+          <dl className="mt-10 grid gap-8 border-t border-zinc-200 pt-8 sm:grid-cols-3">
             <div>
               <dt className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
                 Lokasi
@@ -120,6 +127,21 @@ export default function Home() {
               </dd>
             </div>
           </dl>
+          <figure className="mt-14">
+            <div className="relative aspect-[21/9] overflow-hidden rounded-2xl">
+              <Image
+                src={IMAGES.beans.src}
+                alt={IMAGES.beans.alt}
+                fill
+                sizes="(max-width: 1152px) 100vw, 1152px"
+                className="object-cover grayscale"
+              />
+            </div>
+            <figcaption className="mt-3 text-sm text-zinc-500">
+              Biji kopi pilihan. Kami juga melayani jasa roasting biji kopi.
+              Foto ilustrasi.
+            </figcaption>
+          </figure>
         </section>
 
         <div
@@ -132,9 +154,10 @@ export default function Home() {
                 key={copy}
                 className="pr-8 text-sm font-bold uppercase tracking-[0.3em]"
               >
-                Kopi &nbsp;&mdash;&nbsp; Non Kopi &nbsp;&mdash;&nbsp;
-                JajanDisini &nbsp;&mdash;&nbsp; Kopi &nbsp;&mdash;&nbsp; Non
-                Kopi &nbsp;&mdash;&nbsp; JajanDisini &nbsp;&mdash;&nbsp;
+                Kopi &nbsp;&mdash;&nbsp; Billiard &nbsp;&mdash;&nbsp;
+                #Semuabisadisini &nbsp;&mdash;&nbsp; Kopi &nbsp;&mdash;&nbsp;
+                Billiard &nbsp;&mdash;&nbsp; #Semuabisadisini
+                &nbsp;&mdash;&nbsp;
               </p>
             ))}
           </div>
@@ -148,31 +171,84 @@ export default function Home() {
             <div>
               <Eyebrow>01 &middot; Tentang</Eyebrow>
               <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
-                Sederhana saja. Kopi yang{" "}
-                <em className="font-normal">jujur</em>, tempat yang nyaman.
+                Dari kamar kecil, untuk semua yang{" "}
+                <em className="font-normal">datang.</em>
               </h2>
-            </div>
-            <div className="space-y-5 text-base leading-relaxed text-zinc-600 lg:pt-16">
-              <p>
-                kopidisini berdiri di Aceh Utara sebagai tempat singgah untuk
-                penikmat kopi: dari espresso dan americano sampai racikan
-                signature seperti Es Kopidisini dan Es Kopigudang. Buat yang
-                tidak minum kopi, ada matcha, coklat, teh, dan squash.
-              </p>
-              <p>
-                Semua pemesanan dilakukan lewat halaman pesanan kami, jadi kamu
-                bisa memilih mau take away, delivery, dine in, atau reservasi
-                sebelum datang.
-              </p>
-              <div className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-zinc-300 bg-zinc-50 px-6 py-14 text-center">
-                <p className="font-display text-2xl italic text-zinc-700">
-                  Foto kedai segera hadir.
+              <div className="mt-8 space-y-5 text-base leading-relaxed text-zinc-600">
+                <p>
+                  kopidisini dibangun pada awal 2021 dari sebuah kamar kecil
+                  yang disewa, dengan menu yang masih terbatas. Perlahan, kamar
+                  itu tumbuh menjadi ruang F&amp;B yang nyaman dengan menu yang
+                  makin menarik, lalu bertambah jasa roasting biji kopi dan
+                  area billiard.
                 </p>
-                <p className="text-sm text-zinc-500">
-                  Ruang ini disiapkan untuk foto kedai dan produk.
+                <p>
+                  Kami percaya secangkir kopi berkualitas dan permainan
+                  billiard yang menyenangkan adalah kombinasi sempurna untuk
+                  pengalaman sosial yang berbeda. Karena itu kami membangun
+                  lebih dari sekadar tempat jualan: kami membangun komunitas,
+                  tempat setiap pengunjung merasa menjadi bagiannya.
+                </p>
+                <p>
+                  Kami pernah bekerja sama dengan Universitas Malikussaleh,
+                  terutama Fakultas Agribisnis, dan menerima mahasiswa magang.
                 </p>
               </div>
             </div>
+            <div className="lg:pt-16">
+              <div className="grid grid-cols-2 gap-4">
+                <figure>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                    <Image
+                      src={IMAGES.barista.src}
+                      alt={IMAGES.barista.alt}
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 25vw"
+                      className="object-cover grayscale"
+                    />
+                  </div>
+                  <figcaption className="mt-2 text-xs text-zinc-500">
+                    Kopi premium, racikan barista.
+                  </figcaption>
+                </figure>
+                <figure>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                    <Image
+                      src={IMAGES.billiard.src}
+                      alt={IMAGES.billiard.alt}
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 25vw"
+                      className="object-cover grayscale"
+                    />
+                  </div>
+                  <figcaption className="mt-2 text-xs text-zinc-500">
+                    Fasilitas billiard yang nyaman.
+                  </figcaption>
+                </figure>
+              </div>
+              <p className="mt-4 text-sm text-zinc-500">
+                Foto ilustrasi. Foto asli kedai menyusul.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-20">
+            <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
+              Yang kami pegang
+            </h3>
+            <ul className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
+              {VALUES.map((value, index) => (
+                <li key={value.name} className="border-t border-zinc-200 pt-5">
+                  <span className="font-display text-lg font-light text-zinc-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h4 className="mt-3 text-base font-bold">{value.name}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                    {value.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -240,6 +316,10 @@ export default function Home() {
                   {ADDRESS}, Indonesia
                 </address>
                 <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-600">
+                  Datang untuk kopinya, tinggal untuk billiardnya. Suasana
+                  kami hangat, modern, dan ramah untuk semua kalangan.
+                </p>
+                <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-600">
                   Jam buka akan diumumkan di sini. Untuk kabar terbaru, pantau
                   Instagram kami di{" "}
                   <a
@@ -290,6 +370,9 @@ export default function Home() {
           <p className="font-display text-6xl font-light lowercase tracking-[-0.02em] sm:text-7xl">
             kopidisini<em className="font-normal">.</em>
           </p>
+          <p className="mt-6 text-sm font-bold uppercase tracking-[0.25em] text-zinc-400">
+            Kopi &amp; billiard dalam satu tempat &middot; #Semuabisadisini
+          </p>
           <div className="mt-12 flex flex-col gap-10 border-t border-zinc-800 pt-10 text-sm leading-relaxed text-zinc-400 sm:flex-row sm:items-start sm:justify-between">
             <div className="max-w-xs">
               <p>{ADDRESS}, Indonesia</p>
@@ -320,7 +403,8 @@ export default function Home() {
           </div>
           <p className="mt-14 text-xs leading-relaxed text-zinc-500">
             &copy; 2026 kopidisini. Contoh tampilan (dummy) &mdash; jam buka,
-            foto, dan detail lain akan dilengkapi.
+            foto asli, dan detail lain akan dilengkapi. Foto ilustrasi dari
+            Pexels.
           </p>
         </div>
       </footer>

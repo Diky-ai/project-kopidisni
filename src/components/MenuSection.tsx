@@ -100,7 +100,8 @@ export default function MenuSection() {
       </ul>
 
       <p className="mt-8 text-sm text-zinc-500">
-        Menampilkan {visible.length} dari {MENU_ITEMS.length} menu.
+        Menampilkan {visible.length} dari {MENU_ITEMS.length} menu. Bubuk dan
+        biji kopi tersedia dalam kemasan 250g, 500g, dan 1000g.
       </p>
     </section>
   );

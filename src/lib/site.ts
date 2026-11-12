@@ -25,3 +25,46 @@ export const ORDER_MODES = [
     description: "Amankan tempatmu sebelum datang.",
   },
 ];
+
+// Foto ilustrasi dari Pexels (lisensi gratis, sudah diverifikasi
+// 2026-11-13). Semua ditampilkan hitam putih supaya selaras dengan
+// identitas kopidisini. Ganti dengan foto asli kedai begitu tersedia.
+export const IMAGES = {
+  beans: {
+    src: "https://images.pexels.com/photos/30444143/pexels-photo-30444143/free-photo-of-close-up-of-roasted-coffee-beans-in-focus.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    alt: "Biji kopi yang sudah di-roasting, tampak dari dekat.",
+  },
+  barista: {
+    src: "https://images.pexels.com/photos/30226644/pexels-photo-30226644.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    alt: "Barista sedang meracik kopi dengan mesin espresso.",
+  },
+  billiard: {
+    src: "https://images.pexels.com/photos/8724476/pexels-photo-8724476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    alt: "Bola billiard di atas meja billiard beserta stiknya.",
+  },
+};
+
+// Nilai-nilai kopidisini dari dokumen Core Identity (2026-11-13).
+// Kata-katanya diolah ulang agar ringkas untuk website.
+export const VALUES = [
+  {
+    name: "Integritas",
+    description: "Jujur dan transparan, dari bahan baku sampai pelayanan.",
+  },
+  {
+    name: "Kualitas",
+    description: "Setiap cangkir dan setiap meja memegang standar tinggi.",
+  },
+  {
+    name: "Kebersamaan",
+    description: "Ruang untuk bertemu, berinteraksi, dan membangun relasi.",
+  },
+  {
+    name: "Inovasi",
+    description: "Racikan kreatif dan konsep baru yang terus dicari.",
+  },
+  {
+    name: "Keberlanjutan",
+    description: "Peduli lingkungan dan komunitas di sekitar kami.",
+  },
+];

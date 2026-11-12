@@ -21,7 +21,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "kopidisini — Kopi enak, di sini.",
   description:
-    "kopidisini, kedai kopi di Aceh Utara. Lihat menu kopi, non kopi, dan JajanDisini, lalu pesan lewat halaman pesanan kami.",
+    "kopidisini, kedai kopi dan billiard di Aceh Utara. Kopi premium racikan barista, meja billiard yang nyaman, dan ruang komunitas. #SEMUABISADISINI.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
