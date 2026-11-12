@@ -27,8 +27,9 @@ export const ORDER_MODES = [
 ];
 
 // Foto ilustrasi dari Pexels (lisensi gratis, sudah diverifikasi
-// 2026-11-13). Semua ditampilkan hitam putih supaya selaras dengan
-// identitas kopidisini. Ganti dengan foto asli kedai begitu tersedia.
+// 2026-11-13). Foto ditampilkan berwarna; hitam putih tetap dominan
+// lewat latar, teks, dan tombol. Ganti dengan foto asli kedai
+// begitu tersedia.
 export const IMAGES = {
   beans: {
     src: "https://images.pexels.com/photos/30444143/pexels-photo-30444143/free-photo-of-close-up-of-roasted-coffee-beans-in-focus.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",

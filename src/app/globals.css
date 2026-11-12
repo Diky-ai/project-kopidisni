@@ -11,6 +11,8 @@
   --font-sans: var(--font-manrope), Arial, Helvetica, sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-kopi: #8c5e2a;
+  --color-kopi-soft: #d9a45b;
 }
 
 html {
@@ -26,7 +28,7 @@ body {
 }
 
 ::selection {
-  background: #000000;
+  background: #8c5e2a;
   color: #ffffff;
 }
 

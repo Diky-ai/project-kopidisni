@@ -14,7 +14,7 @@ import {
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
-      <span aria-hidden="true" className="h-px w-10 bg-zinc-300" />
+      <span aria-hidden="true" className="h-px w-10 bg-kopi" />
       {children}
     </p>
   );
@@ -29,7 +29,7 @@ export default function Home() {
             href="#beranda"
             className="font-display text-2xl font-semibold lowercase tracking-tight"
           >
-            kopidisini.
+            kopidisini<span className="text-kopi">.</span>
           </a>
           <nav
             aria-label="Navigasi utama"
@@ -66,7 +66,7 @@ export default function Home() {
           <h1 className="mt-8 max-w-4xl font-display text-7xl font-light leading-[0.95] tracking-[-0.02em] sm:text-8xl lg:text-9xl">
             Kopi enak,
             <br />
-            <em className="font-normal">di sini.</em>
+            <em className="font-normal text-kopi">di sini.</em>
           </h1>
           <div className="mt-10 flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
             <p className="max-w-md text-lg leading-relaxed text-zinc-600">
@@ -87,13 +87,13 @@ export default function Home() {
               </a>
               <a
                 href="#menu"
-                className="text-base font-bold underline decoration-zinc-300 underline-offset-8 transition-colors hover:decoration-black"
+                className="text-base font-bold underline decoration-zinc-300 underline-offset-8 transition-colors hover:decoration-kopi"
               >
                 Lihat Menu
               </a>
             </div>
           </div>
-          <p className="mt-10 text-sm font-bold tracking-[0.25em]">
+          <p className="mt-10 text-sm font-bold tracking-[0.25em] text-kopi">
             #SEMUABISADISINI
           </p>
           <dl className="mt-10 grid gap-8 border-t border-zinc-200 pt-8 sm:grid-cols-3">
@@ -134,7 +134,7 @@ export default function Home() {
                 alt={IMAGES.beans.alt}
                 fill
                 sizes="(max-width: 1152px) 100vw, 1152px"
-                className="object-cover grayscale"
+                className="object-cover"
               />
             </div>
             <figcaption className="mt-3 text-sm text-zinc-500">
@@ -172,7 +172,7 @@ export default function Home() {
               <Eyebrow>01 &middot; Tentang</Eyebrow>
               <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
                 Dari kamar kecil, untuk semua yang{" "}
-                <em className="font-normal">datang.</em>
+                <em className="font-normal text-kopi">datang.</em>
               </h2>
               <div className="mt-8 space-y-5 text-base leading-relaxed text-zinc-600">
                 <p>
@@ -204,7 +204,7 @@ export default function Home() {
                       alt={IMAGES.barista.alt}
                       fill
                       sizes="(max-width: 1024px) 50vw, 25vw"
-                      className="object-cover grayscale"
+                      className="object-cover"
                     />
                   </div>
                   <figcaption className="mt-2 text-xs text-zinc-500">
@@ -218,7 +218,7 @@ export default function Home() {
                       alt={IMAGES.billiard.alt}
                       fill
                       sizes="(max-width: 1024px) 50vw, 25vw"
-                      className="object-cover grayscale"
+                      className="object-cover"
                     />
                   </div>
                   <figcaption className="mt-2 text-xs text-zinc-500">
@@ -265,7 +265,7 @@ export default function Home() {
               id="signature-heading"
               className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl"
             >
-              Yang paling <em className="font-normal">dicari.</em>
+              Yang paling <em className="font-normal text-kopi-soft">dicari.</em>
             </h2>
             <ul className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
               {SIGNATURE_ITEMS.map((item, index) => (
@@ -305,7 +305,7 @@ export default function Home() {
             <Eyebrow>04 &middot; Lokasi &amp; cara pesan</Eyebrow>
             <h2 className="mt-6 max-w-2xl font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
               Mampir, atau pesan dari{" "}
-              <em className="font-normal">mana saja.</em>
+              <em className="font-normal text-kopi">mana saja.</em>
             </h2>
             <div className="mt-14 grid gap-12 lg:grid-cols-2">
               <div>
@@ -368,7 +368,7 @@ export default function Home() {
       <footer className="bg-black text-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-20">
           <p className="font-display text-6xl font-light lowercase tracking-[-0.02em] sm:text-7xl">
-            kopidisini<em className="font-normal">.</em>
+            kopidisini<em className="font-normal text-kopi-soft">.</em>
           </p>
           <p className="mt-6 text-sm font-bold uppercase tracking-[0.25em] text-zinc-400">
             Kopi &amp; billiard dalam satu tempat &middot; #Semuabisadisini

@@ -21,12 +21,12 @@ export default function MenuSection() {
   return (
     <section id="menu" className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
       <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
-        <span aria-hidden="true" className="h-px w-10 bg-zinc-300" />
+        <span aria-hidden="true" className="h-px w-10 bg-kopi" />
         03 &middot; Menu
       </p>
       <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
         <h2 className="font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
-          Pilih <em className="font-normal">favoritmu.</em>
+          Pilih <em className="font-normal text-kopi">favoritmu.</em>
         </h2>
         <p className="max-w-sm text-sm leading-relaxed text-zinc-600">
           Harga dari halaman pesanan kami. Klik Pesan untuk lanjut memesan
@@ -50,7 +50,7 @@ export default function MenuSection() {
               onClick={() => setFilter(option.value)}
               className={
                 active
-                  ? "-mb-px border-b-2 border-black pb-3 text-sm font-bold text-black"
+                  ? "-mb-px border-b-2 border-kopi pb-3 text-sm font-bold text-black"
                   : "-mb-px border-b-2 border-transparent pb-3 text-sm font-bold text-zinc-400 transition-colors hover:text-black"
               }
             >
@@ -73,7 +73,7 @@ export default function MenuSection() {
               <p className="mt-1 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
                 {item.category}
                 {item.signature ? (
-                  <span className="rounded-full bg-black px-2 py-0.5 normal-case tracking-normal text-white">
+                  <span className="rounded-full bg-kopi px-2 py-0.5 normal-case tracking-normal text-white">
                     Signature
                   </span>
                 ) : null}
@@ -91,7 +91,7 @@ export default function MenuSection() {
               target="_blank"
               rel="noreferrer"
               aria-label={`Pesan ${item.name}`}
-              className="shrink-0 text-sm font-bold underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-black"
+              className="shrink-0 text-sm font-bold underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-kopi"
             >
               Pesan
             </a>
