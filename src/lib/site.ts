@@ -73,7 +73,22 @@ export const IMAGES = {
   },
 };
 
-// Nilai-nilai kopidisini dari dokumen Core Identity (2026-11-13).
+// Foto cup asli kopidisini (file JPG di public/, ditambahkan lewat git
+// oleh pemilik repo; tidak bisa di-push lewat snapshot karena biner).
+// Setiap foto punya foto ilustrasi Pexels sebagai cadangan kalau
+// filenya belum ada.
+export const CUP_ICE_SRC = "/cup-ice.jpg";
+export const CUP_HOT_SRC = "/cup-hot.jpg";
+export const CUP_ICE_ALT = "Cup es kopi kopidisini dengan logo pin.";
+export const CUP_HOT_ALT = "Cup kopi panas kopidisini dengan logo pin.";
+export const CUP_HOT_FALLBACK = {
+  src: "https://images.pexels.com/photos/6772461/pexels-photo-6772461.jpeg?auto=compress&cs=tinysrgb&w=800&loading=lazy",
+  alt: "Secangkir latte dengan latte art berbentuk hati.",
+};
+
+// Tautan Google Maps untuk alamat kedai (pencarian berdasarkan alamat).
+export const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=kopidisini%2C%20Jl.%20kiara%20payung%20no.%20A1%2C%20komp.%20AAF%2C%20Aceh%20Utara";
 // Kata-katanya diolah ulang agar ringkas untuk website.
 export const VALUES = [
   {

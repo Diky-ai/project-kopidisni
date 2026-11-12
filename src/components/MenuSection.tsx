@@ -31,8 +31,8 @@ export default function MenuSection() {
         05 &middot; Menu
       </p>
       <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
-        <h2 className="font-display text-3xl font-light leading-[1.1] tracking-[-0.01em] sm:text-4xl">
-          Pilih <em className="font-normal text-kopi">favoritmu.</em>
+        <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl">
+          Pilih <span className="text-kopi">favoritmu.</span>
         </h2>
         <p className="max-w-sm text-sm leading-relaxed text-zinc-600">
           Harga dari halaman pesanan kami. Klik Pesan untuk lanjut memesan
@@ -93,7 +93,7 @@ export default function MenuSection() {
                 ) : null}
               </div>
               <div className="p-4">
-                <h3 className="font-display text-base font-normal leading-snug sm:text-lg">
+                <h3 className="font-display text-base font-bold leading-snug sm:text-lg">
                   {item.name}
                 </h3>
                 <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">

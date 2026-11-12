@@ -1,14 +1,26 @@
 import Image from "next/image";
 import BottomNav from "@/components/BottomNav";
+import CupImage from "@/components/CupImage";
 import LogoImage from "@/components/LogoImage";
 import MenuSection from "@/components/MenuSection";
 import Reveal from "@/components/Reveal";
-import { MENU_ITEMS, SIGNATURE_ITEMS, formatPrice } from "@/data/menu";
+import {
+  MENU_ITEMS,
+  SIGNATURE_ITEMS,
+  formatPrice,
+  imageForMenuItem,
+} from "@/data/menu";
 import {
   ADDRESS,
+  CUP_HOT_ALT,
+  CUP_HOT_FALLBACK,
+  CUP_HOT_SRC,
+  CUP_ICE_ALT,
+  CUP_ICE_SRC,
   IMAGES,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
+  MAPS_URL,
   ORDER_MODES,
   ORDER_URL,
   VALUES,
@@ -128,7 +140,7 @@ export default function Home() {
               priority
               className="h-10 w-10"
               fallback={
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black font-display text-xl font-semibold text-white">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black font-display text-xl font-extrabold text-white">
                   k<span className="text-kopi-soft">.</span>
                 </span>
               }
@@ -174,12 +186,12 @@ export default function Home() {
                 <Eyebrow>Kedai kopi &amp; billiard &middot; Aceh Utara</Eyebrow>
               </div>
               <h1
-                className="animate-rise mt-8 max-w-xl font-display text-5xl font-light leading-[1.02] tracking-[-0.02em] sm:text-6xl lg:text-7xl"
+                className="animate-rise mt-8 max-w-xl font-display text-5xl font-black leading-[1.05] tracking-[-0.01em] sm:text-6xl lg:text-7xl"
                 style={{ animationDelay: "80ms" }}
               >
                 Kopi enak,
                 <br />
-                <em className="font-normal text-kopi">di sini.</em>
+                <span className="text-kopi">di sini.</span>
               </h1>
               <p
                 className="animate-rise mt-6 max-w-lg text-base leading-relaxed text-zinc-600 sm:text-lg"
@@ -204,6 +216,12 @@ export default function Home() {
                   <span aria-hidden="true"> &rarr;</span>
                 </a>
                 <a
+                  href="#tentang"
+                  className="rounded-full border-2 border-black px-7 py-3 text-base font-bold text-black transition-all hover:bg-black hover:text-white active:scale-95"
+                >
+                  Kenalan Dulu
+                </a>
+                <a
                   href="#menu"
                   className="text-base font-bold underline decoration-zinc-300 underline-offset-8 transition-colors hover:decoration-kopi"
                 >
@@ -222,31 +240,30 @@ export default function Home() {
               style={{ animationDelay: "200ms" }}
             >
               <figure className="relative">
+                <span
+                  aria-hidden="true"
+                  className="absolute -right-5 -top-5 h-36 w-36 rounded-full border-2 border-dashed border-kopi/50 sm:h-44 sm:w-44"
+                />
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] sm:aspect-[5/4] lg:aspect-[4/5]">
-                  <Image
-                    src={IMAGES.barista.src}
-                    alt={IMAGES.barista.alt}
+                  <CupImage
+                    src={CUP_ICE_SRC}
+                    fallbackSrc={IMAGES.icedCoffee.src}
+                    alt={CUP_ICE_ALT}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover"
                   />
                 </div>
-                <figcaption className="absolute bottom-4 left-4 rounded-full bg-white px-4 py-2 text-xs font-bold shadow-md">
-                  Berdiri sejak 2021
+                <figcaption className="absolute bottom-4 left-4 max-w-[16rem] rounded-2xl bg-white px-5 py-4 shadow-lg">
+                  <span className="block text-sm font-extrabold">
+                    Berdiri sejak 2021
+                  </span>
+                  <span className="mt-1 block text-xs leading-relaxed text-zinc-600">
+                    Kopi &amp; billiard dalam satu tempat, di Aceh Utara.
+                  </span>
                 </figcaption>
-                <div className="animate-float absolute bottom-4 right-4 w-24 overflow-hidden rounded-xl border-2 border-white shadow-lg sm:w-32">
-                  <Image
-                    src={IMAGES.beans.src}
-                    alt={IMAGES.beans.alt}
-                    width={256}
-                    height={256}
-                    sizes="(max-width: 640px) 96px, 128px"
-                    className="aspect-square object-cover"
-                  />
-                </div>
               </figure>
-              <p className="mt-3 text-sm text-zinc-500">Foto ilustrasi.</p>
             </div>
           </div>
           <dl className="mt-16 grid gap-8 border-t border-zinc-200 pt-8 sm:grid-cols-3">
@@ -292,7 +309,7 @@ export default function Home() {
                 key={stat.label}
                 className="flex flex-col px-4 py-8 text-center sm:py-10"
               >
-                <dd className="order-1 font-display text-2xl font-light sm:text-4xl">
+                <dd className="order-1 font-display text-2xl font-black sm:text-4xl">
                   {stat.value}
                 </dd>
                 <dt className="order-2 mt-2 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-500 sm:text-xs">
@@ -340,9 +357,9 @@ export default function Home() {
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal>
                 <Eyebrow>01 &middot; Tentang</Eyebrow>
-                <h2 className="mt-6 font-display text-3xl font-light leading-[1.1] tracking-[-0.01em] sm:text-4xl">
+                <h2 className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl">
                   Dari kamar kecil, untuk semua yang{" "}
-                  <em className="font-normal text-kopi">datang.</em>
+                  <span className="text-kopi">datang.</span>
                 </h2>
                 <div className="mt-8 space-y-5 text-base leading-relaxed text-zinc-600">
                   <p>
@@ -368,6 +385,21 @@ export default function Home() {
               </Reveal>
               <Reveal delay={120} className="lg:pt-16">
                 <div className="grid grid-cols-2 gap-4">
+                  <figure className="row-span-2">
+                    <div className="relative h-full min-h-72 overflow-hidden rounded-2xl">
+                      <CupImage
+                        src={CUP_HOT_SRC}
+                        fallbackSrc={CUP_HOT_FALLBACK.src}
+                        alt={CUP_HOT_ALT}
+                        fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="mt-2 text-xs text-zinc-500">
+                      Kopi panas, diseduh saat dipesan.
+                    </figcaption>
+                  </figure>
                   <figure>
                     <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
                       <Image
@@ -397,13 +429,53 @@ export default function Home() {
                     </figcaption>
                   </figure>
                 </div>
-                <p className="mt-4 text-sm text-zinc-500">
-                  Foto ilustrasi. Foto asli kedai menyusul.
-                </p>
               </Reveal>
             </div>
 
             <Reveal className="mt-20">
+              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
+                Perjalanan kami
+              </h3>
+              <ol className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-3">
+                {[
+                  {
+                    phase: "Awal 2021",
+                    title: "Berawal dari kamar kecil",
+                    description:
+                      "Sebuah kamar sewa dengan menu yang masih terbatas.",
+                  },
+                  {
+                    phase: "Bertumbuh",
+                    title: "Menjadi ruang F&B",
+                    description:
+                      "Menu makin menarik, suasana makin nyaman untuk berlama-lama.",
+                  },
+                  {
+                    phase: "Hari ini",
+                    title: "Kopi, roasting & billiard",
+                    description:
+                      "Jasa roasting biji kopi dan area billiard melengkapi kedai.",
+                  },
+                ].map((step) => (
+                  <li
+                    key={step.title}
+                    className="border-t-2 border-black pt-5"
+                  >
+                    <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-kopi">
+                      {step.phase}
+                    </span>
+                    <h4 className="mt-3 font-display text-lg font-bold leading-snug">
+                      {step.title}
+                    </h4>
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                      {step.description}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+
+            <Reveal className="mt-16">
               <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
                 Yang kami pegang
               </h3>
@@ -413,7 +485,7 @@ export default function Home() {
                     key={value.name}
                     className="border-t border-zinc-300 pt-5"
                   >
-                    <span className="font-display text-lg font-light text-zinc-400">
+                    <span className="font-display text-lg font-extrabold text-zinc-400">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <h4 className="mt-3 text-base font-bold">{value.name}</h4>
@@ -438,43 +510,58 @@ export default function Home() {
             </p>
             <h2
               id="signature-heading"
-              className="mt-6 font-display text-3xl font-light leading-[1.1] tracking-[-0.01em] sm:text-4xl"
+              className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl"
             >
               Yang paling{" "}
-              <em className="font-normal text-kopi-soft">dicari.</em>
+              <span className="text-kopi-soft">dicari.</span>
             </h2>
             <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-400">
               Racikan andalan kami, dari kopi sampai cokelat signature.
             </p>
-            <ul className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-              {SIGNATURE_ITEMS.map((item, index) => (
-                <li
-                  key={item.name}
-                  className="group border-t border-zinc-800 pt-6 transition-colors"
-                >
-                  <Reveal delay={index * 90}>
-                    <span className="font-display text-4xl font-light text-zinc-600 transition-colors group-hover:text-zinc-300">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="mt-5 font-display text-xl font-normal leading-snug">
-                      {item.name}
-                    </h3>
-                    <p className="mt-3 text-base font-bold tabular-nums text-zinc-300">
-                      {formatPrice(item.price)}
-                    </p>
-                    <a
-                      href={ORDER_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`Pesan ${item.name}`}
-                      className="mt-5 inline-block text-sm font-bold underline decoration-zinc-600 underline-offset-8 transition-colors hover:decoration-white"
-                    >
-                      Pesan
-                      <span aria-hidden="true"> &rarr;</span>
-                    </a>
-                  </Reveal>
-                </li>
-              ))}
+            <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {SIGNATURE_ITEMS.map((item, index) => {
+                const image = imageForMenuItem(item);
+                return (
+                  <li
+                    key={item.name}
+                    className="group overflow-hidden rounded-3xl bg-zinc-900 ring-1 ring-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:ring-zinc-600"
+                  >
+                    <Reveal delay={index * 90}>
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <Image
+                          src={image.src}
+                          alt={`${item.name} (ilustrasi)`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <span className="absolute left-3 top-3 rounded-full bg-kopi px-2.5 py-1 text-[11px] font-bold text-white shadow-sm">
+                          Signature
+                        </span>
+                      </div>
+                      <div className="p-5">
+                        <h3 className="font-display text-lg font-bold leading-snug">
+                          {item.name}
+                        </h3>
+                        <div className="mt-4 flex items-center justify-between gap-3">
+                          <p className="text-base font-bold tabular-nums text-kopi-soft">
+                            {formatPrice(item.price)}
+                          </p>
+                          <a
+                            href={ORDER_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Pesan ${item.name}`}
+                            className="shrink-0 rounded-full bg-white px-4 py-2 text-xs font-bold text-black transition-all hover:opacity-80 active:scale-95"
+                          >
+                            Pesan
+                          </a>
+                        </div>
+                      </div>
+                    </Reveal>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
@@ -491,10 +578,10 @@ export default function Home() {
             </p>
             <h2
               id="gallery-heading"
-              className="mt-6 font-display text-3xl font-light leading-[1.1] tracking-[-0.01em] sm:text-4xl"
+              className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl"
             >
               Suasana yang bikin{" "}
-              <em className="font-normal text-kopi">betah.</em>
+              <span className="text-kopi">betah.</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-zinc-600">
               Cahaya hangat, meja kayu, dan aroma kopi. Tempat yang enak
@@ -546,9 +633,9 @@ export default function Home() {
           <Eyebrow>04 &middot; Kategori menu</Eyebrow>
           <h2
             id="categories-heading"
-            className="mt-6 font-display text-3xl font-light leading-[1.1] tracking-[-0.01em] sm:text-4xl"
+            className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl"
           >
-            Mulai dari <em className="font-normal text-kopi">kategorinya.</em>
+            Mulai dari <span className="text-kopi">kategorinya.</span>
           </h2>
           <ul className="mt-12 grid gap-4 sm:grid-cols-3">
             {CATEGORY_CARDS.map((card, index) => {
@@ -574,7 +661,7 @@ export default function Home() {
                         className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"
                       />
                       <span className="absolute inset-x-0 bottom-0 p-6 text-white">
-                        <span className="block font-display text-2xl font-normal">
+                        <span className="block font-display text-2xl font-bold">
                           {card.title}
                         </span>
                         <span className="mt-2 block text-sm font-bold">
@@ -596,16 +683,16 @@ export default function Home() {
         <section id="lokasi" className="border-t border-zinc-200">
           <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
             <Eyebrow>06 &middot; Lokasi &amp; cara pesan</Eyebrow>
-            <h2 className="mt-6 max-w-xl font-display text-3xl font-light leading-[1.1] tracking-[-0.01em] sm:text-4xl">
+            <h2 className="mt-6 max-w-xl font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl">
               Mampir, atau pesan dari{" "}
-              <em className="font-normal text-kopi">mana saja.</em>
+              <span className="text-kopi">mana saja.</span>
             </h2>
             <div className="mt-14 grid gap-12 lg:grid-cols-2">
               <Reveal>
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
                   Alamat kedai
                 </h3>
-                <address className="mt-4 font-display text-2xl font-normal leading-snug not-italic">
+                <address className="mt-4 font-display text-2xl font-bold leading-snug not-italic">
                   {ADDRESS}, Indonesia
                 </address>
                 <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-600">
@@ -625,15 +712,25 @@ export default function Home() {
                   </a>
                   .
                 </p>
-                <a
-                  href={ORDER_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-8 inline-block rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-all hover:opacity-80 active:scale-95"
-                >
-                  Pesan Sekarang
-                  <span aria-hidden="true"> &rarr;</span>
-                </a>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <a
+                    href={ORDER_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-all hover:opacity-80 active:scale-95"
+                  >
+                    Pesan Sekarang
+                    <span aria-hidden="true"> &rarr;</span>
+                  </a>
+                  <a
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block rounded-full border-2 border-black px-7 py-3 text-base font-bold text-black transition-all hover:bg-black hover:text-white active:scale-95"
+                  >
+                    Lihat di Google Maps
+                  </a>
+                </div>
               </Reveal>
               <Reveal delay={120}>
                 <ul>
@@ -642,7 +739,7 @@ export default function Home() {
                       key={mode.name}
                       className="flex gap-6 border-t border-zinc-200 py-6 last:border-b"
                     >
-                      <span className="font-display text-lg font-light text-zinc-400">
+                      <span className="font-display text-lg font-extrabold text-zinc-400">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       <div>
@@ -669,8 +766,8 @@ export default function Home() {
             height={426}
             className="h-auto w-full max-w-md"
             fallback={
-              <p className="font-display text-5xl font-light lowercase tracking-[-0.02em] sm:text-6xl">
-                kopidisini<em className="font-normal text-kopi-soft">.</em>
+              <p className="font-display text-5xl font-extrabold lowercase tracking-[-0.02em] sm:text-6xl">
+                kopidisini<span className="text-kopi-soft">.</span>
               </p>
             }
           />

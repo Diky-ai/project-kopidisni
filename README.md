@@ -43,7 +43,9 @@ unggah ke subdomain atau subfolder tersendiri, misalnya
 Sebelum build, letakkan file logo dan ikon PWA di `public/` supaya
 ikut tersalin ke `out/`: `logo.png`, `logo-mark.png`,
 `icon-192x192.png`, `icon-512x512.png`, `icon-maskable-512x512.png`,
-dan `apple-touch-icon.png`.
+dan `apple-touch-icon.png`. Foto cup asli kedai (`cup-ice.jpg` dan
+`cup-hot.jpg`) juga diletakkan di `public/`; kalau belum ada, situs
+menampilkan foto ilustrasi sebagai cadangan.
 
 Catatan: optimasi gambar `next/image` dimatikan (`unoptimized: true`)
 karena butuh server Node.js. URL foto Pexels sudah membawa parameter
@@ -116,7 +118,7 @@ npm run lint    # cek lint
 
 ## Catatan
 
-- Tipografi: hanya 2 font web, Fraunces (judul, serif) dan Manrope
+- Tipografi: hanya 2 font web, Nunito (judul, sans tebal membulat) dan Manrope
   (teks, sans), lewat `next/font/google` — sesuai batas maksimal 3 font.
   File font diunduh sekali saat `npm run dev` / `npm run build` pertama
   (butuh internet), lalu disajikan lokal. Kalau unduhan gagal, CSS
