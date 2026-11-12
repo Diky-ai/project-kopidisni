@@ -1,6 +1,7 @@
 import Image from "next/image";
+import BottomNav from "@/components/BottomNav";
 import MenuSection from "@/components/MenuSection";
-import { SIGNATURE_ITEMS, formatPrice } from "@/data/menu";
+import { MENU_ITEMS, SIGNATURE_ITEMS, formatPrice } from "@/data/menu";
 import {
   ADDRESS,
   IMAGES,
@@ -19,6 +20,78 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
     </p>
   );
 }
+
+const PILLARS = [
+  {
+    name: "Kopi Premium",
+    description: "Racikan barista profesional, dari biji pilihan.",
+    icon: (
+      <path d="M5 4h11v7a5 5 0 0 1-10 0V4ZM16 6h2.5a2.5 2.5 0 0 1 0 5H16M8 20h8" />
+    ),
+  },
+  {
+    name: "Billiard",
+    description: "Fasilitas nyaman berstandar tinggi, siap dimainkan.",
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <text
+          x="12"
+          y="16"
+          textAnchor="middle"
+          fontSize="11"
+          fontWeight="700"
+          fill="currentColor"
+          stroke="none"
+        >
+          8
+        </text>
+      </>
+    ),
+  },
+  {
+    name: "Roasting Biji Kopi",
+    description: "Jasa roasting untuk biji kopi pilihanmu.",
+    icon: (
+      <path d="M12 3c2 3-3 5-3 8a3 3 0 0 0 6 0c0-1.5-1-2.5-1-2.5s3 1.5 3 5a5 5 0 0 1-10 0c0-5 4-7 5-10.5Z" />
+    ),
+  },
+  {
+    name: "Komunitas",
+    description: "Ruang berkumpul untuk semua kalangan.",
+    icon: (
+      <>
+        <circle cx="9" cy="9" r="3.5" />
+        <circle cx="15.5" cy="10" r="2.8" />
+        <path d="M4 20c0-3 2.5-5 5-5s5 2 5 5M14 20c.5-2.5 2-4 4-4 1.8 0 3 1.2 3.5 3" />
+      </>
+    ),
+  },
+];
+
+const CATEGORY_CARDS = [
+  {
+    title: "Kopi",
+    category: "KOPI" as const,
+    image: IMAGES.icedCoffee,
+  },
+  {
+    title: "Non Kopi",
+    category: "NON KOPI" as const,
+    image: IMAGES.matcha,
+  },
+  {
+    title: "JajanDisini",
+    category: "JAJANDISINI" as const,
+    image: IMAGES.pastry,
+  },
+];
+
+const STATS = [
+  { value: "46", label: "Menu & racikan" },
+  { value: "2 in 1", label: "Kopi & billiard" },
+  { value: "2021", label: "Berdiri sejak" },
+];
 
 export default function Home() {
   return (
@@ -49,7 +122,7 @@ export default function Home() {
             href={ORDER_URL}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-black px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-80"
+            className="whitespace-nowrap rounded-full bg-black px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-80"
           >
             Pesan Sekarang
             <span aria-hidden="true"> &rarr;</span>
@@ -60,43 +133,63 @@ export default function Home() {
       <main className="flex-1">
         <section
           id="beranda"
-          className="mx-auto w-full max-w-6xl px-6 pb-20 pt-16 sm:pb-28 sm:pt-24"
+          className="mx-auto w-full max-w-6xl px-6 pb-16 pt-12 sm:pb-20 sm:pt-16"
         >
-          <Eyebrow>Kedai kopi &amp; billiard &middot; Aceh Utara</Eyebrow>
-          <h1 className="mt-8 max-w-4xl font-display text-7xl font-light leading-[0.95] tracking-[-0.02em] sm:text-8xl lg:text-9xl">
-            Kopi enak,
-            <br />
-            <em className="font-normal text-kopi">di sini.</em>
-          </h1>
-          <div className="mt-10 flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
-            <p className="max-w-md text-lg leading-relaxed text-zinc-600">
-              kopidisini adalah ruang berkumpul modern: kopi premium racikan
-              barista dan meja billiard yang nyaman dalam satu tempat. Untuk
-              nongkrong, bekerja, bersantai, dan main bersama. Di sini, semua
-              bisa.
-            </p>
-            <div className="flex shrink-0 flex-wrap items-center gap-6">
-              <a
-                href={ORDER_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-80"
-              >
-                Pesan Sekarang
-                <span aria-hidden="true"> &rarr;</span>
-              </a>
-              <a
-                href="#menu"
-                className="text-base font-bold underline decoration-zinc-300 underline-offset-8 transition-colors hover:decoration-kopi"
-              >
-                Lihat Menu
-              </a>
+          <div className="grid items-center gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <Eyebrow>Kedai kopi &amp; billiard &middot; Aceh Utara</Eyebrow>
+              <h1 className="mt-8 font-display text-6xl font-light leading-[0.95] tracking-[-0.02em] sm:text-7xl xl:text-8xl">
+                Kopi enak,
+                <br />
+                <em className="font-normal text-kopi">di sini.</em>
+              </h1>
+              <p className="mt-8 max-w-md text-lg leading-relaxed text-zinc-600">
+                kopidisini adalah ruang berkumpul modern: kopi premium racikan
+                barista dan meja billiard yang nyaman dalam satu tempat. Untuk
+                nongkrong, bekerja, bersantai, dan main bersama. Di sini,
+                semua bisa.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-6">
+                <a
+                  href={ORDER_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-80"
+                >
+                  Pesan Sekarang
+                  <span aria-hidden="true"> &rarr;</span>
+                </a>
+                <a
+                  href="#menu"
+                  className="text-base font-bold underline decoration-zinc-300 underline-offset-8 transition-colors hover:decoration-kopi"
+                >
+                  Lihat Menu
+                </a>
+              </div>
+              <p className="mt-10 text-sm font-bold tracking-[0.25em] text-kopi">
+                #SEMUABISADISINI
+              </p>
+            </div>
+            <div className="lg:col-span-5">
+              <figure className="relative">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] sm:aspect-[5/4] lg:aspect-[4/5]">
+                  <Image
+                    src={IMAGES.barista.src}
+                    alt={IMAGES.barista.alt}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="absolute bottom-4 left-4 rounded-full bg-white px-4 py-2 text-xs font-bold shadow-md">
+                  Berdiri sejak 2021
+                </figcaption>
+              </figure>
+              <p className="mt-3 text-sm text-zinc-500">Foto ilustrasi.</p>
             </div>
           </div>
-          <p className="mt-10 text-sm font-bold tracking-[0.25em] text-kopi">
-            #SEMUABISADISINI
-          </p>
-          <dl className="mt-10 grid gap-8 border-t border-zinc-200 pt-8 sm:grid-cols-3">
+          <dl className="mt-16 grid gap-8 border-t border-zinc-200 pt-8 sm:grid-cols-3">
             <div>
               <dt className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
                 Lokasi
@@ -127,21 +220,54 @@ export default function Home() {
               </dd>
             </div>
           </dl>
-          <figure className="mt-14">
-            <div className="relative aspect-[21/9] overflow-hidden rounded-2xl">
-              <Image
-                src={IMAGES.beans.src}
-                alt={IMAGES.beans.alt}
-                fill
-                sizes="(max-width: 1152px) 100vw, 1152px"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="mt-3 text-sm text-zinc-500">
-              Biji kopi pilihan. Kami juga melayani jasa roasting biji kopi.
-              Foto ilustrasi.
-            </figcaption>
-          </figure>
+        </section>
+
+        <section
+          aria-label="Sekilas kopidisini"
+          className="border-y border-zinc-200"
+        >
+          <dl className="mx-auto grid w-full max-w-6xl grid-cols-3 divide-x divide-zinc-200 px-6">
+            {STATS.map((stat) => (
+              <div key={stat.label} className="px-4 py-8 text-center sm:py-10">
+                <dt className="order-2 mt-2 block text-xs font-bold uppercase tracking-[0.15em] text-zinc-500 sm:text-sm">
+                  {stat.label}
+                </dt>
+                <dd className="font-display text-3xl font-light sm:text-5xl">
+                  {stat.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section
+          aria-label="Yang kami tawarkan"
+          className="mx-auto w-full max-w-6xl px-6 py-14 sm:py-16"
+        >
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+            {PILLARS.map((pillar) => (
+              <li key={pillar.name}>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-8 w-8 text-kopi"
+                >
+                  {pillar.icon}
+                </svg>
+                <h2 className="mt-4 text-base font-bold sm:text-lg">
+                  {pillar.name}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                  {pillar.description}
+                </p>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <div
@@ -163,92 +289,95 @@ export default function Home() {
           </div>
         </div>
 
-        <section
-          id="tentang"
-          className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28"
-        >
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <Eyebrow>01 &middot; Tentang</Eyebrow>
-              <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
-                Dari kamar kecil, untuk semua yang{" "}
-                <em className="font-normal text-kopi">datang.</em>
-              </h2>
-              <div className="mt-8 space-y-5 text-base leading-relaxed text-zinc-600">
-                <p>
-                  kopidisini dibangun pada awal 2021 dari sebuah kamar kecil
-                  yang disewa, dengan menu yang masih terbatas. Perlahan, kamar
-                  itu tumbuh menjadi ruang F&amp;B yang nyaman dengan menu yang
-                  makin menarik, lalu bertambah jasa roasting biji kopi dan
-                  area billiard.
-                </p>
-                <p>
-                  Kami percaya secangkir kopi berkualitas dan permainan
-                  billiard yang menyenangkan adalah kombinasi sempurna untuk
-                  pengalaman sosial yang berbeda. Karena itu kami membangun
-                  lebih dari sekadar tempat jualan: kami membangun komunitas,
-                  tempat setiap pengunjung merasa menjadi bagiannya.
-                </p>
-                <p>
-                  Kami pernah bekerja sama dengan Universitas Malikussaleh,
-                  terutama Fakultas Agribisnis, dan menerima mahasiswa magang.
-                </p>
-              </div>
-            </div>
-            <div className="lg:pt-16">
-              <div className="grid grid-cols-2 gap-4">
-                <figure>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-                    <Image
-                      src={IMAGES.barista.src}
-                      alt={IMAGES.barista.alt}
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 25vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <figcaption className="mt-2 text-xs text-zinc-500">
-                    Kopi premium, racikan barista.
-                  </figcaption>
-                </figure>
-                <figure>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-                    <Image
-                      src={IMAGES.billiard.src}
-                      alt={IMAGES.billiard.alt}
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 25vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <figcaption className="mt-2 text-xs text-zinc-500">
-                    Fasilitas billiard yang nyaman.
-                  </figcaption>
-                </figure>
-              </div>
-              <p className="mt-4 text-sm text-zinc-500">
-                Foto ilustrasi. Foto asli kedai menyusul.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-20">
-            <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
-              Yang kami pegang
-            </h3>
-            <ul className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
-              {VALUES.map((value, index) => (
-                <li key={value.name} className="border-t border-zinc-200 pt-5">
-                  <span className="font-display text-lg font-light text-zinc-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h4 className="mt-3 text-base font-bold">{value.name}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-                    {value.description}
+        <section id="tentang" className="bg-cream">
+          <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
+            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <Eyebrow>01 &middot; Tentang</Eyebrow>
+                <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
+                  Dari kamar kecil, untuk semua yang{" "}
+                  <em className="font-normal text-kopi">datang.</em>
+                </h2>
+                <div className="mt-8 space-y-5 text-base leading-relaxed text-zinc-600">
+                  <p>
+                    kopidisini dibangun pada awal 2021 dari sebuah kamar kecil
+                    yang disewa, dengan menu yang masih terbatas. Perlahan,
+                    kamar itu tumbuh menjadi ruang F&amp;B yang nyaman dengan
+                    menu yang makin menarik, lalu bertambah jasa roasting biji
+                    kopi dan area billiard.
                   </p>
-                </li>
-              ))}
-            </ul>
+                  <p>
+                    Kami percaya secangkir kopi berkualitas dan permainan
+                    billiard yang menyenangkan adalah kombinasi sempurna untuk
+                    pengalaman sosial yang berbeda. Karena itu kami membangun
+                    lebih dari sekadar tempat jualan: kami membangun komunitas,
+                    tempat setiap pengunjung merasa menjadi bagiannya.
+                  </p>
+                  <p>
+                    Kami pernah bekerja sama dengan Universitas Malikussaleh,
+                    terutama Fakultas Agribisnis, dan menerima mahasiswa
+                    magang.
+                  </p>
+                </div>
+              </div>
+              <div className="lg:pt-16">
+                <div className="grid grid-cols-2 gap-4">
+                  <figure>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                      <Image
+                        src={IMAGES.beans.src}
+                        alt={IMAGES.beans.alt}
+                        fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="mt-2 text-xs text-zinc-500">
+                      Biji kopi pilihan, di-roasting sendiri.
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                      <Image
+                        src={IMAGES.billiard.src}
+                        alt={IMAGES.billiard.alt}
+                        fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="mt-2 text-xs text-zinc-500">
+                      Fasilitas billiard yang nyaman.
+                    </figcaption>
+                  </figure>
+                </div>
+                <p className="mt-4 text-sm text-zinc-500">
+                  Foto ilustrasi. Foto asli kedai menyusul.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-20">
+              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
+                Yang kami pegang
+              </h3>
+              <ul className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
+                {VALUES.map((value, index) => (
+                  <li
+                    key={value.name}
+                    className="border-t border-zinc-300 pt-5"
+                  >
+                    <span className="font-display text-lg font-light text-zinc-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h4 className="mt-3 text-base font-bold">{value.name}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                      {value.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -265,7 +394,8 @@ export default function Home() {
               id="signature-heading"
               className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl"
             >
-              Yang paling <em className="font-normal text-kopi-soft">dicari.</em>
+              Yang paling{" "}
+              <em className="font-normal text-kopi-soft">dicari.</em>
             </h2>
             <ul className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
               {SIGNATURE_ITEMS.map((item, index) => (
@@ -298,11 +428,61 @@ export default function Home() {
           </div>
         </section>
 
+        <section
+          aria-labelledby="categories-heading"
+          className="mx-auto w-full max-w-6xl px-6 pb-4 pt-20 sm:pt-28"
+        >
+          <Eyebrow>03 &middot; Kategori menu</Eyebrow>
+          <h2
+            id="categories-heading"
+            className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl"
+          >
+            Mulai dari <em className="font-normal text-kopi">kategorinya.</em>
+          </h2>
+          <ul className="mt-12 grid gap-4 sm:grid-cols-3">
+            {CATEGORY_CARDS.map((card) => {
+              const count = MENU_ITEMS.filter(
+                (item) => item.category === card.category,
+              ).length;
+              return (
+                <li key={card.category}>
+                  <a
+                    href="#menu"
+                    className="group relative block aspect-[16/10] overflow-hidden rounded-3xl sm:aspect-[3/4]"
+                  >
+                    <Image
+                      src={card.image.src}
+                      alt={card.image.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"
+                    />
+                    <span className="absolute inset-x-0 bottom-0 p-6 text-white">
+                      <span className="block font-display text-3xl font-normal">
+                        {card.title}
+                      </span>
+                      <span className="mt-2 block text-sm font-bold">
+                        {count} menu &middot; Lihat menu{" "}
+                        <span aria-hidden="true">&rarr;</span>
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mt-4 text-sm text-zinc-500">Foto ilustrasi.</p>
+        </section>
+
         <MenuSection />
 
         <section id="lokasi" className="border-t border-zinc-200">
           <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
-            <Eyebrow>04 &middot; Lokasi &amp; cara pesan</Eyebrow>
+            <Eyebrow>05 &middot; Lokasi &amp; cara pesan</Eyebrow>
             <h2 className="mt-6 max-w-2xl font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
               Mampir, atau pesan dari{" "}
               <em className="font-normal text-kopi">mana saja.</em>
@@ -408,6 +588,9 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      <BottomNav />
+      <div aria-hidden="true" className="h-14 sm:hidden" />
     </div>
   );
 }

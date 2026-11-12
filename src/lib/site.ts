@@ -43,6 +43,18 @@ export const IMAGES = {
     src: "https://images.pexels.com/photos/8724476/pexels-photo-8724476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     alt: "Bola billiard di atas meja billiard beserta stiknya.",
   },
+  icedCoffee: {
+    src: "https://images.pexels.com/photos/16550825/pexels-photo-16550825/free-photo-of-glass-of-coffee-on-table.jpeg?auto=compress&cs=tinysrgb&w=600&loading=lazy",
+    alt: "Segelas es kopi di atas meja kayu.",
+  },
+  matcha: {
+    src: "https://images.pexels.com/photos/911810/pexels-photo-911810.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    alt: "Matcha latte dilihat dari atas.",
+  },
+  pastry: {
+    src: "https://images.pexels.com/photos/5594474/pexels-photo-5594474.jpeg?auto=compress&cs=tinysrgb&w=600&loading=lazy",
+    alt: "Croissant di atas piring saji bersama secangkir kopi.",
+  },
 };
 
 // Nilai-nilai kopidisini dari dokumen Core Identity (2026-11-13).
