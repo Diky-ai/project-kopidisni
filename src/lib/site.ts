@@ -55,6 +55,22 @@ export const IMAGES = {
     src: "https://images.pexels.com/photos/5594474/pexels-photo-5594474.jpeg?auto=compress&cs=tinysrgb&w=600&loading=lazy",
     alt: "Croissant di atas piring saji bersama secangkir kopi.",
   },
+  galleryWide: {
+    src: "https://images.pexels.com/photos/17502245/pexels-photo-17502245/free-photo-of-table-and-chairs-in-restaurant.jpeg?auto=compress&w=800",
+    alt: "Interior kedai kopi modern yang disinari matahari.",
+  },
+  galleryInterior: {
+    src: "https://images.pexels.com/photos/11689773/pexels-photo-11689773.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    alt: "Interior kafe modern dengan meja kayu dan kursi nyaman.",
+  },
+  galleryPour: {
+    src: "https://images.pexels.com/photos/1924951/pexels-photo-1924951.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    alt: "Barista menuang susu dari pitcher ke dalam mug untuk latte art.",
+  },
+  galleryFriends: {
+    src: "https://images.pexels.com/photos/36729520/pexels-photo-36729520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    alt: "Empat teman bersulang dengan mug di meja kayu sebuah kafe.",
+  },
 };
 
 // Nilai-nilai kopidisini dari dokumen Core Identity (2026-11-13).

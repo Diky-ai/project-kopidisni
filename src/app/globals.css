@@ -38,21 +38,56 @@ body {
   outline-offset: 3px;
 }
 
-@keyframes marquee {
+/* Tautan navigasi: garis bawah yang tumbuh saat disentuh. */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: #8c5e2a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Zoom perlahan (Ken Burns) untuk foto suasana. */
+@keyframes kenburns {
   from {
-    transform: translateX(0);
+    transform: scale(1);
   }
   to {
-    transform: translateX(-50%);
+    transform: scale(1.08);
   }
 }
 
-.marquee-track {
-  animation: marquee 32s linear infinite;
+.animate-kenburns {
+  animation: kenburns 16s ease-in-out infinite alternate;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+/* Mengambang lembut untuk elemen kolase hero. */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: floaty 6s ease-in-out infinite;
 }
 
 /* Elemen yang muncul saat di-scroll (lihat komponen Reveal). */
@@ -107,10 +142,6 @@ body {
     scroll-behavior: auto;
   }
 
-  .marquee-track {
-    animation: none;
-  }
-
   .reveal {
     opacity: 1;
     transform: none;
@@ -118,7 +149,9 @@ body {
   }
 
   .animate-rise,
-  .menu-card-enter {
+  .menu-card-enter,
+  .animate-kenburns,
+  .animate-float {
     animation: none;
   }
 }

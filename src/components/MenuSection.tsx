@@ -25,13 +25,13 @@ export default function MenuSection() {
       : MENU_ITEMS.filter((item) => item.category === filter);
 
   return (
-    <section id="menu" className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
-      <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
+    <section id="menu" className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
+      <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
         <span aria-hidden="true" className="h-px w-10 bg-kopi" />
-        04 &middot; Menu
+        05 &middot; Menu
       </p>
       <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
-        <h2 className="font-display text-4xl font-light leading-[1.05] tracking-[-0.01em] sm:text-5xl">
+        <h2 className="font-display text-3xl font-light leading-[1.1] tracking-[-0.01em] sm:text-4xl">
           Pilih <em className="font-normal text-kopi">favoritmu.</em>
         </h2>
         <p className="max-w-sm text-sm leading-relaxed text-zinc-600">
@@ -93,7 +93,7 @@ export default function MenuSection() {
                 ) : null}
               </div>
               <div className="p-4">
-                <h3 className="font-display text-lg font-normal leading-snug">
+                <h3 className="font-display text-base font-normal leading-snug sm:text-lg">
                   {item.name}
                 </h3>
                 <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">

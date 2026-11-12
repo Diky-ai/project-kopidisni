@@ -15,6 +15,8 @@ Stack: Next.js 16 + React 19 + TypeScript + Tailwind CSS 4.
   Universitas Malikussaleh.
 - Signature: 4 menu signature (Es Kopidisini, Es Avanger, Es Kopigudang,
   Manis Lembut).
+- Suasana: galeri foto suasana kafe (ilustrasi Pexels) dengan animasi
+  zoom perlahan.
 - Kategori menu: kartu bergambar Kopi, Non Kopi, dan JajanDisini.
 - Menu: 46 menu dari halaman pesanan, bisa difilter per kategori
   (Kopi, Non Kopi, JajanDisini). Nama dan harga disalin dari
@@ -99,6 +101,8 @@ npm run lint    # cek lint
   (butuh internet), lalu disajikan lokal. Kalau unduhan gagal, CSS
   memakai font sistem cadangan (Georgia/Arial).
 - Animasi: reveal saat scroll, animasi masuk hero, animasi ganti filter
-  menu, dan efek hover/aktif pada kartu dan tombol. Semua dimatikan
-  otomatis untuk pengguna yang mengaktifkan prefers-reduced-motion.
+  menu, zoom perlahan pada foto suasana, elemen melayang di hero, garis
+  bawah navigasi yang tumbuh, dan efek hover/aktif pada kartu dan tombol.
+  Semua dimatikan otomatis untuk pengguna yang mengaktifkan
+  prefers-reduced-motion.
 - Jangan commit file `.env.local` atau key asli apa pun. Repo ini publik.
