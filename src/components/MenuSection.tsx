@@ -99,8 +99,8 @@ export default function MenuSection() {
                 <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
                   {item.category}
                 </p>
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <span className="text-base font-bold tabular-nums">
+                <div className="mt-4 flex items-center justify-between gap-2">
+                  <span className="whitespace-nowrap text-sm font-bold tabular-nums sm:text-base">
                     {formatPrice(item.price)}
                   </span>
                   <a
@@ -108,7 +108,7 @@ export default function MenuSection() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`Pesan ${item.name}`}
-                    className="shrink-0 rounded-full bg-black px-4 py-2 text-xs font-bold text-white transition-all hover:opacity-80 active:scale-95"
+                    className="shrink-0 rounded-full bg-black px-3.5 py-2 text-xs font-bold text-white transition-all hover:opacity-80 active:scale-95 sm:px-4"
                   >
                     Pesan
                   </a>
