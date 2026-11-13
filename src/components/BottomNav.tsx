@@ -5,14 +5,14 @@ import { ORDER_URL } from "@/lib/site";
 const ITEMS = [
   {
     href: "#beranda",
-    label: "Beranda",
+    label: "Home",
     icon: (
       <path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5" />
     ),
   },
   {
     href: "#tentang",
-    label: "Tentang",
+    label: "About",
     icon: (
       <>
         <circle cx="12" cy="12" r="9" />
@@ -29,7 +29,7 @@ const ITEMS = [
   },
   {
     href: "#lokasi",
-    label: "Lokasi",
+    label: "Location",
     icon: (
       <>
         <path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21Z" />
@@ -42,7 +42,7 @@ const ITEMS = [
 export default function BottomNav() {
   return (
     <nav
-      aria-label="Navigasi bawah"
+      aria-label="Bottom navigation"
       className="fixed inset-x-0 bottom-0 z-20 border-t border-zinc-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden"
     >
       <ul className="grid grid-cols-5">

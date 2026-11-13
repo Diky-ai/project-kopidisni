@@ -8,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-manrope), Arial, Helvetica, sans-serif;
-  --font-display: var(--font-nunito), "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-jost), Futura, "Century Gothic", Arial, Helvetica, sans-serif;
+  --font-display: var(--font-jost), Futura, "Century Gothic", Arial, Helvetica, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-kopi: #8c5e2a;
   --color-kopi-soft: #d9a45b;
@@ -24,7 +24,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+  font-family: var(--font-jost), Futura, "Century Gothic", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -36,6 +36,12 @@ body {
 :focus-visible {
   outline: 2px solid #000000;
   outline-offset: 3px;
+}
+
+/* Di atas latar hitam, cincin fokus memakai warna terang. */
+header :focus-visible,
+footer :focus-visible {
+  outline-color: #d9a45b;
 }
 
 /* Tautan navigasi: garis bawah yang tumbuh saat disentuh. */
@@ -51,7 +57,7 @@ body {
   bottom: 0;
   height: 2px;
   width: 100%;
-  background: #8c5e2a;
+  background: currentColor;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -61,26 +67,8 @@ body {
   transform: scaleX(1);
 }
 
-/* Zoom perlahan (Ken Burns) untuk foto suasana. */
-@keyframes kenburns {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.08);
-  }
-}
-
-.animate-kenburns {
-  animation: kenburns 16s ease-in-out infinite alternate;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .animate-kenburns {
-    animation: none;
   }
 }

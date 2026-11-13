@@ -1,22 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Nunito } from "next/font/google";
+import { Jost } from "next/font/google";
 import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
-// Tipografi kopidisini: Nunito untuk judul (sans tebal membulat, gaya
-// referensi Alowishus) dan Manrope untuk teks (sans modern).
+// Tipografi kopidisini: Jost untuk judul dan teks — sans geometris
+// (gaya Futura) sesuai referensi Dribbble Alowishus yang dipilih
+// pemilik. Satu keluarga font untuk seluruh UI.
 // next/font/google mengunduh file font saat build/dev pertama (butuh
 // internet sekali), lalu font disajikan lokal. Kalau unduhan gagal,
 // CSS memakai font sistem cadangan yang didefinisikan di globals.css.
-const nunito = Nunito({
+const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-nunito",
-  weight: ["700", "800", "900"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-jost",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -39,10 +35,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="id"
-      className={`h-full antialiased ${nunito.variable} ${manrope.variable}`}
-    >
+    <html lang="id" className={`h-full antialiased ${jost.variable}`}>
       <body className="min-h-full flex flex-col">
         <ScrollProgress />
         {children}

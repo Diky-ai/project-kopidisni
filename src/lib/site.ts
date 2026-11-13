@@ -21,7 +21,7 @@ export const ORDER_MODES = [
     description: "Pesan dari meja dengan memindai QR di meja.",
   },
   {
-    name: "Reservasi",
+    name: "Reservation",
     description: "Amankan tempatmu sebelum datang.",
   },
 ];
@@ -118,7 +118,7 @@ export const PROCESS_VIDEOS = [
   },
   {
     step: "03",
-    title: "Ekstraksi",
+    title: "Extraction",
     description:
       "Barista mengekstraksi kopi dengan mesin espresso, cangkir demi cangkir, saat dipesan.",
     src: "https://videos.pexels.com/video-files/7487671/7487671-hd_1280_720_24fps.mp4",
