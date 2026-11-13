@@ -3,6 +3,7 @@ import BottomNav from "@/components/BottomNav";
 import CupImage from "@/components/CupImage";
 import LogoImage from "@/components/LogoImage";
 import MenuSection from "@/components/MenuSection";
+import ProcessSection from "@/components/ProcessSection";
 import Reveal from "@/components/Reveal";
 import {
   MENU_ITEMS,
@@ -156,6 +157,9 @@ export default function Home() {
             <a href="#tentang" className="nav-link">
               Tentang
             </a>
+            <a href="#proses" className="nav-link">
+              Proses
+            </a>
             <a href="#menu" className="nav-link">
               Menu
             </a>
@@ -182,63 +186,56 @@ export default function Home() {
         >
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <div className="animate-rise">
+              <Reveal>
                 <Eyebrow>Kedai kopi &amp; billiard &middot; Aceh Utara</Eyebrow>
-              </div>
-              <h1
-                className="animate-rise mt-8 max-w-xl font-display text-5xl font-black leading-[1.05] tracking-[-0.01em] sm:text-6xl lg:text-7xl"
-                style={{ animationDelay: "80ms" }}
-              >
-                Kopi enak,
-                <br />
-                <span className="text-kopi">di sini.</span>
-              </h1>
-              <p
-                className="animate-rise mt-6 max-w-lg text-base leading-relaxed text-zinc-600 sm:text-lg"
-                style={{ animationDelay: "160ms" }}
-              >
-                kopidisini adalah ruang berkumpul modern: kopi premium racikan
-                barista dan meja billiard yang nyaman dalam satu tempat. Untuk
-                nongkrong, bekerja, bersantai, dan main bersama. Di sini,
-                semua bisa.
-              </p>
-              <div
-                className="animate-rise mt-10 flex flex-wrap items-center gap-6"
-                style={{ animationDelay: "240ms" }}
-              >
-                <a
-                  href={ORDER_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-all hover:opacity-80 active:scale-95"
-                >
-                  Pesan Sekarang
-                  <span aria-hidden="true"> &rarr;</span>
-                </a>
-                <a
-                  href="#tentang"
-                  className="rounded-full border-2 border-black px-7 py-3 text-base font-bold text-black transition-all hover:bg-black hover:text-white active:scale-95"
-                >
-                  Kenalan Dulu
-                </a>
-                <a
-                  href="#menu"
-                  className="text-base font-bold underline decoration-zinc-300 underline-offset-8 transition-colors hover:decoration-kopi"
-                >
-                  Lihat Menu
-                </a>
-              </div>
-              <p
-                className="animate-rise mt-10 text-sm font-bold tracking-[0.25em] text-kopi"
-                style={{ animationDelay: "320ms" }}
-              >
-                #SEMUABISADISINI
-              </p>
+              </Reveal>
+              <Reveal delay={80}>
+                <h1 className="mt-8 max-w-xl font-display text-5xl font-black leading-[1.05] tracking-[-0.01em] sm:text-6xl lg:text-7xl">
+                  Kopi enak,
+                  <br />
+                  <span className="text-kopi">di sini.</span>
+                </h1>
+              </Reveal>
+              <Reveal delay={160}>
+                <p className="mt-6 max-w-lg text-base leading-relaxed text-zinc-600 sm:text-lg">
+                  kopidisini adalah ruang berkumpul modern: kopi premium
+                  racikan barista dan meja billiard yang nyaman dalam satu
+                  tempat. Untuk nongkrong, bekerja, bersantai, dan main
+                  bersama. Di sini, semua bisa.
+                </p>
+              </Reveal>
+              <Reveal delay={240}>
+                <div className="mt-10 flex flex-wrap items-center gap-6">
+                  <a
+                    href={ORDER_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full bg-black px-7 py-3.5 text-base font-bold text-white transition-all hover:opacity-80 active:scale-95"
+                  >
+                    Pesan Sekarang
+                    <span aria-hidden="true"> &rarr;</span>
+                  </a>
+                  <a
+                    href="#tentang"
+                    className="rounded-full border-2 border-black px-7 py-3 text-base font-bold text-black transition-all hover:bg-black hover:text-white active:scale-95"
+                  >
+                    Kenalan Dulu
+                  </a>
+                  <a
+                    href="#menu"
+                    className="text-base font-bold underline decoration-zinc-300 underline-offset-8 transition-colors hover:decoration-kopi"
+                  >
+                    Lihat Menu
+                  </a>
+                </div>
+              </Reveal>
+              <Reveal delay={320}>
+                <p className="mt-10 text-sm font-bold tracking-[0.25em] text-kopi">
+                  #SEMUABISADISINI
+                </p>
+              </Reveal>
             </div>
-            <div
-              className="animate-rise lg:col-span-5"
-              style={{ animationDelay: "200ms" }}
-            >
+            <Reveal delay={200} className="lg:col-span-5">
               <figure className="relative">
                 <span
                   aria-hidden="true"
@@ -264,7 +261,7 @@ export default function Home() {
                   </span>
                 </figcaption>
               </figure>
-            </div>
+            </Reveal>
           </div>
           <dl className="mt-16 grid gap-8 border-t border-zinc-200 pt-8 sm:grid-cols-3">
             <div>
@@ -499,6 +496,8 @@ export default function Home() {
           </div>
         </section>
 
+        <ProcessSection />
+
         <section
           aria-labelledby="signature-heading"
           className="bg-black text-white"
@@ -506,7 +505,7 @@ export default function Home() {
           <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
             <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-400">
               <span aria-hidden="true" className="h-px w-10 bg-zinc-700" />
-              02 &middot; Signature
+              03 &middot; Signature
             </p>
             <h2
               id="signature-heading"
@@ -573,7 +572,7 @@ export default function Home() {
           <div className="mx-auto max-w-2xl text-center">
             <p className="flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
               <span aria-hidden="true" className="h-px w-10 bg-kopi" />
-              03 &middot; Suasana
+              04 &middot; Suasana
               <span aria-hidden="true" className="h-px w-10 bg-kopi" />
             </p>
             <h2
@@ -630,7 +629,7 @@ export default function Home() {
           aria-labelledby="categories-heading"
           className="mx-auto w-full max-w-6xl px-6 pb-4 pt-16 sm:pt-24"
         >
-          <Eyebrow>04 &middot; Kategori menu</Eyebrow>
+          <Eyebrow>05 &middot; Kategori menu</Eyebrow>
           <h2
             id="categories-heading"
             className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl"
@@ -682,7 +681,7 @@ export default function Home() {
 
         <section id="lokasi" className="border-t border-zinc-200">
           <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
-            <Eyebrow>06 &middot; Lokasi &amp; cara pesan</Eyebrow>
+            <Eyebrow>07 &middot; Lokasi &amp; cara pesan</Eyebrow>
             <h2 className="mt-6 max-w-xl font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl">
               Mampir, atau pesan dari{" "}
               <span className="text-kopi">mana saja.</span>

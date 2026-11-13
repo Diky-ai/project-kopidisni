@@ -89,6 +89,44 @@ export const CUP_HOT_FALLBACK = {
 // Tautan Google Maps untuk alamat kedai (pencarian berdasarkan alamat).
 export const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=kopidisini%2C%20Jl.%20kiara%20payung%20no.%20A1%2C%20komp.%20AAF%2C%20Aceh%20Utara";
+
+// Video proses pembuatan kopi dari Pexels (lisensi gratis, sudah
+// diverifikasi 2026-11-13: file 720p, poster foto 1200px). Video
+// diputar tanpa suara dan berulang; poster dipakai sebagai gambar
+// diam untuk prefers-reduced-motion dan sebelum video dimuat.
+// Ganti dengan video asli kedai begitu tersedia.
+export const PROCESS_VIDEOS = [
+  {
+    step: "01",
+    title: "Roasting",
+    description:
+      "Biji kopi pilihan di-roasting untuk mengeluarkan karakter rasanya. Kami juga melayani jasa roasting biji kopi.",
+    src: "https://videos.pexels.com/video-files/13882353/13882353-hd_1280_720_25fps.mp4",
+    poster:
+      "https://images.pexels.com/photos/4940744/pexels-photo-4940744.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    posterAlt: "Biji kopi yang sedang di-roasting di dalam mesin roasting.",
+  },
+  {
+    step: "02",
+    title: "Grinding",
+    description:
+      "Biji yang sudah di-roasting digiling sesuai cara seduh yang dipakai, supaya ekstraksinya seimbang.",
+    src: "https://videos.pexels.com/video-files/2849942/2849942-hd_1280_720_24fps.mp4",
+    poster:
+      "https://images.pexels.com/photos/13272708/pexels-photo-13272708.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    posterAlt: "Mesin grinder kopi yang terisi biji kopi yang sudah di-roasting.",
+  },
+  {
+    step: "03",
+    title: "Ekstraksi",
+    description:
+      "Barista mengekstraksi kopi dengan mesin espresso, cangkir demi cangkir, saat dipesan.",
+    src: "https://videos.pexels.com/video-files/7487671/7487671-hd_1280_720_24fps.mp4",
+    poster:
+      "https://images.pexels.com/photos/5192028/pexels-photo-5192028.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    posterAlt: "Espresso yang sedang dituang dari mesin ke dalam gelas.",
+  },
+];
 // Kata-katanya diolah ulang agar ringkas untuk website.
 export const VALUES = [
   {

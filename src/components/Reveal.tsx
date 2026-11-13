@@ -1,10 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import type { ReactNode } from "react";
 
 // Membungkus konten yang muncul perlahan saat masuk layar.
-// Sekali terlihat, tetap terlihat. Hormat pada prefers-reduced-motion
-// lewat CSS (kelas .reveal di globals.css).
+// Sekali terlihat, tetap terlihat. Hormat pada prefers-reduced-motion:
+// kalau pengguna memintanya, konten langsung tampil tanpa animasi.
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const variants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay, ease: EASE },
+  }),
+};
+
 export default function Reveal({
   children,
   className,
@@ -14,36 +26,22 @@ export default function Reveal({
   className?: string;
   delay?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const reduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
-      const timer = setTimeout(() => setVisible(true), 0);
-      return () => clearTimeout(timer);
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  if (reduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
-    <div
-      ref={ref}
-      className={`reveal${visible ? " is-visible" : ""}${className ? ` ${className}` : ""}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+    <motion.div
+      className={className}
+      variants={variants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      custom={delay / 1000}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

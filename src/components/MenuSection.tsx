@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   MENU_ITEMS,
   formatPrice,
@@ -19,6 +20,7 @@ const FILTERS: Array<{ label: string; value: MenuCategory | "SEMUA" }> = [
 
 export default function MenuSection() {
   const [filter, setFilter] = useState<MenuCategory | "SEMUA">("SEMUA");
+  const reduceMotion = useReducedMotion();
   const visible =
     filter === "SEMUA"
       ? MENU_ITEMS
@@ -28,7 +30,7 @@ export default function MenuSection() {
     <section id="menu" className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
       <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
         <span aria-hidden="true" className="h-px w-10 bg-kopi" />
-        05 &middot; Menu
+        06 &middot; Menu
       </p>
       <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
         <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.01em] sm:text-4xl">
@@ -56,11 +58,21 @@ export default function MenuSection() {
               onClick={() => setFilter(option.value)}
               className={
                 active
-                  ? "-mb-px shrink-0 whitespace-nowrap border-b-2 border-kopi pb-3 text-sm font-bold text-black"
-                  : "-mb-px shrink-0 whitespace-nowrap border-b-2 border-transparent pb-3 text-sm font-bold text-zinc-400 transition-colors hover:text-black"
+                  ? "relative -mb-px shrink-0 whitespace-nowrap pb-3 text-sm font-bold text-black"
+                  : "relative -mb-px shrink-0 whitespace-nowrap pb-3 text-sm font-bold text-zinc-400 transition-colors hover:text-black"
               }
             >
               {option.label}
+              {active && !reduceMotion ? (
+                <motion.span
+                  layoutId="menu-tab-underline"
+                  transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                  className="absolute inset-x-0 -bottom-px h-0.5 bg-kopi"
+                />
+              ) : null}
+              {active && reduceMotion ? (
+                <span className="absolute inset-x-0 -bottom-px h-0.5 bg-kopi" />
+              ) : null}
             </button>
           );
         })}
@@ -73,10 +85,16 @@ export default function MenuSection() {
         {visible.map((item, index) => {
           const image = imageForMenuItem(item);
           return (
-            <li
+            <motion.li
               key={item.name}
-              style={{ animationDelay: `${Math.min(index, 7) * 50}ms` }}
-              className="menu-card-enter group overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.5,
+                delay: Math.min(index, 7) * 0.05,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="group overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-[box-shadow,translate] duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
@@ -114,7 +132,7 @@ export default function MenuSection() {
                   </a>
                 </div>
               </div>
-            </li>
+            </motion.li>
           );
         })}
       </ul>

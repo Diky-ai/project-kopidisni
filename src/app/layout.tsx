@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Nunito } from "next/font/google";
+import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
 // Tipografi kopidisini: Nunito untuk judul (sans tebal membulat, gaya
@@ -42,7 +43,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="id"
       className={`h-full antialiased ${nunito.variable} ${manrope.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ScrollProgress />
+        {children}
+      </body>
     </html>
   );
 }

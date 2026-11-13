@@ -75,83 +75,12 @@ body {
   animation: kenburns 16s ease-in-out infinite alternate;
 }
 
-/* Mengambang lembut untuk elemen kolase hero. */
-@keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.animate-float {
-  animation: floaty 6s ease-in-out infinite;
-}
-
-/* Elemen yang muncul saat di-scroll (lihat komponen Reveal). */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
-  will-change: opacity, transform;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* Animasi masuk hero saat halaman pertama dimuat. */
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.animate-rise {
-  animation: rise 0.8s ease both;
-}
-
-/* Kartu menu: animasi masuk tiap ganti filter. */
-@keyframes menu-card-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.menu-card-enter {
-  animation: menu-card-in 0.5s ease both;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .animate-rise,
-  .menu-card-enter,
-  .animate-kenburns,
-  .animate-float {
+  .animate-kenburns {
     animation: none;
   }
 }
