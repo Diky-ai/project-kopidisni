@@ -71,14 +71,14 @@ export default function ProcessSection() {
         <div className="grid items-end gap-6 lg:grid-cols-2">
           <Reveal>
             <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-400">
-              <span aria-hidden="true" className="h-px w-10 bg-kopi-soft" />
+              <span aria-hidden="true" className="h-px w-10 bg-white" />
               02 &middot; Our Process
             </p>
             <h2
               id="process-heading"
               className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl"
             >
-              From Bean To <span className="text-kopi-soft">Cup.</span>
+              From Bean To Cup.
             </h2>
           </Reveal>
           <Reveal delay={120}>

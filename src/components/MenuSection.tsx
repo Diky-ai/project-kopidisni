@@ -37,12 +37,12 @@ export default function MenuSection() {
   return (
     <section id="menu" className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
       <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
-        <span aria-hidden="true" className="h-px w-10 bg-kopi" />
+        <span aria-hidden="true" className="h-px w-10 bg-black" />
         06 &middot; Our Menu
       </p>
       <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
         <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl">
-          Pick Your <span className="text-kopi">Favorite.</span>
+          Pick Your Favorite.
         </h2>
         <p className="max-w-sm text-sm leading-relaxed text-zinc-600">
           Harga dari halaman pesanan kami. Klik Pesan untuk lanjut memesan
@@ -75,11 +75,11 @@ export default function MenuSection() {
                 <motion.span
                   layoutId="menu-tab-underline"
                   transition={{ type: "spring", stiffness: 500, damping: 40 }}
-                  className="absolute inset-x-0 -bottom-px h-0.5 bg-kopi"
+                  className="absolute inset-x-0 -bottom-px h-0.5 bg-black"
                 />
               ) : null}
               {active && reduceMotion ? (
-                <span className="absolute inset-x-0 -bottom-px h-0.5 bg-kopi" />
+                <span className="absolute inset-x-0 -bottom-px h-0.5 bg-black" />
               ) : null}
             </button>
           );
@@ -115,7 +115,7 @@ export default function MenuSection() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {item.signature ? (
-                  <span className="absolute left-3 top-3 rounded-full bg-kopi px-2.5 py-1 text-[11px] font-bold text-white shadow-sm">
+                  <span className="absolute left-3 top-3 rounded-full bg-black px-2.5 py-1 text-[11px] font-bold text-white shadow-sm">
                     Signature
                   </span>
                 ) : null}

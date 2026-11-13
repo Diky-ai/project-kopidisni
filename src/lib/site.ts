@@ -81,6 +81,11 @@ export const CUP_ICE_SRC = "/cup-ice.jpg";
 export const CUP_HOT_SRC = "/cup-hot.jpg";
 export const CUP_ICE_ALT = "Cup es kopi kopidisini dengan logo pin.";
 export const CUP_HOT_ALT = "Cup kopi panas kopidisini dengan logo pin.";
+// Cup hero: potongan cup kraft tanpa latar (PNG transparan) untuk
+// hero ala referensi — cup miring mengambang di atas latar terang.
+export const CUP_HERO_SRC = "/cup-hero.png";
+export const CUP_HERO_ALT =
+  "Cup kopi panas kopidisini dengan logo pin, tanpa latar.";
 export const CUP_HOT_FALLBACK = {
   src: "https://images.pexels.com/photos/6772461/pexels-photo-6772461.jpeg?auto=compress&cs=tinysrgb&w=800&loading=lazy",
   alt: "Secangkir latte dengan latte art berbentuk hati.",

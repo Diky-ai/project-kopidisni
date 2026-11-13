@@ -29,7 +29,7 @@ body {
 }
 
 ::selection {
-  background: #8c5e2a;
+  background: #000000;
   color: #ffffff;
 }
 
@@ -38,10 +38,9 @@ body {
   outline-offset: 3px;
 }
 
-/* Di atas latar hitam, cincin fokus memakai warna terang. */
-header :focus-visible,
+/* Di atas latar hitam (footer), cincin fokus memakai warna terang. */
 footer :focus-visible {
-  outline-color: #d9a45b;
+  outline-color: #ffffff;
 }
 
 /* Tautan navigasi: garis bawah yang tumbuh saat disentuh. */
