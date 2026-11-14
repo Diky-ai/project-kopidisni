@@ -291,9 +291,9 @@ export default function Home() {
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <Reveal>
                 <h1 className="font-head text-[3.25rem] font-extrabold leading-[0.95] tracking-[-0.02em] sm:text-7xl lg:text-8xl">
-                  Kopi Enak,
+                  Kopi Enak
                   <br />
-                  Di Sini.
+                  #disiniaja.
                 </h1>
                 <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
                   kopidisini adalah ruang berkumpul modern: kopi premium
@@ -357,33 +357,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <div className="mx-auto w-full max-w-6xl px-6 pt-6 sm:pt-8">
-          <dl className="grid gap-3 sm:grid-cols-3 sm:gap-4">
-              <Reveal className="rounded-3xl bg-zinc-100 p-5">
-                <dt className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-                  Location
-                </dt>
-                <dd className="mt-2 text-sm leading-relaxed">{ADDRESS}</dd>
-              </Reveal>
-              <Reveal delay={90} className="rounded-3xl bg-zinc-100 p-5">
-                <dt className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-                  How to Order
-                </dt>
-                <dd className="mt-2 text-sm leading-relaxed">
-                  Take Away, Delivery, Dine In, dan Reservation.
-                </dd>
-              </Reveal>
-              <Reveal delay={180} className="rounded-3xl bg-zinc-100 p-5">
-                <dt className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-                  Social Media
-                </dt>
-                <dd className="mt-3">
-                  <SocialLinks className="text-black" />
-                </dd>
-              </Reveal>
-          </dl>
-        </div>
 
         {/* Pilar: grid garis halus di dalam satu bingkai. */}
         <section
@@ -872,10 +845,7 @@ export default function Home() {
             </nav>
           </div>
           <div className="mt-14 flex flex-col gap-3 border-t border-zinc-800 pt-8 text-xs leading-relaxed text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              &copy; 2026 kopidisini. Contoh tampilan (dummy) &mdash; jam
-              buka, foto asli, dan detail lain akan dilengkapi.
-            </p>
+            <p>&copy; 2026 kopidisini.</p>
             <p className="font-bold tracking-[0.25em] text-white">
               #SEMUABISADISINI
             </p>
