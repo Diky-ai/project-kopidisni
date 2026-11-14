@@ -20,6 +20,7 @@ import {
   HERO_CUP_ALT,
   HERO_CUP_POSTER_SRC,
   HERO_CUP_VIDEO_SRC,
+  HERO_CUP_VIDEO_WEBM_SRC,
   IMAGES,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
@@ -119,6 +120,27 @@ const GALLERY_ITEMS = [
   },
 ];
 
+// Ikon keranjang untuk tombol pesan versi ringkas.
+function CartIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="8" cy="21" r="1" />
+      <circle cx="19" cy="21" r="1" />
+      <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <div className="flex min-h-full flex-col bg-white font-sans text-black">
@@ -130,21 +152,23 @@ export default function Home() {
             aria-label="kopidisini, kembali ke beranda"
           >
             <LogoImage
-              src="/logo-mark.png"
+              src="/logo.png"
               alt=""
-              width={512}
-              height={512}
+              width={1400}
+              height={426}
               priority
-              className="h-10 w-10"
+              className="h-10 w-auto"
               fallback={
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black font-display text-xl font-extrabold text-white">
-                  k.
-                </span>
+                <>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black font-display text-xl font-extrabold text-white">
+                    k.
+                  </span>
+                  <span className="text-xl font-extrabold lowercase tracking-tight">
+                    kopidisini.
+                  </span>
+                </>
               }
             />
-            <span className="text-xl font-extrabold lowercase tracking-tight">
-              kopidisini.
-            </span>
           </a>
           <nav
             aria-label="Navigasi utama"
@@ -167,10 +191,11 @@ export default function Home() {
             href={ORDER_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-full bg-black px-5 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-zinc-800 active:scale-95"
+            aria-label="Pesan Sekarang"
+            className="inline-flex min-h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-black px-4 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-zinc-800 active:scale-95"
           >
-            Pesan Sekarang
-            <span aria-hidden="true"> &rarr;</span>
+            <CartIcon className="h-4 w-4" />
+            Pesan
           </a>
         </div>
       </header>
@@ -183,7 +208,7 @@ export default function Home() {
           <div className="mx-auto w-full max-w-6xl px-6 pb-14 pt-10 sm:pt-14 lg:pb-20 lg:pt-20">
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <Reveal>
-                <h1 className="font-head text-[3.25rem] font-medium leading-[0.95] tracking-[-0.02em] sm:text-7xl lg:text-8xl">
+                <h1 className="font-head text-[3.25rem] font-extrabold leading-[0.95] tracking-[-0.02em] sm:text-7xl lg:text-8xl">
                   Kopi Enak,
                   <br />
                   Di Sini.
@@ -198,7 +223,7 @@ export default function Home() {
                     href={ORDER_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex min-h-12 items-center rounded-full bg-black px-7 py-3.5 text-base font-bold uppercase tracking-[0.12em] text-white transition-all hover:opacity-80 active:scale-95"
+                    className="inline-flex min-h-11 items-center rounded-full bg-black px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition-all hover:opacity-80 active:scale-95"
                   >
                     Pesan Sekarang
                     <span aria-hidden="true"> &rarr;</span>
@@ -244,6 +269,7 @@ export default function Home() {
                 <div className="relative rotate-[6deg]">
                   <HeroCupVideo
                     src={HERO_CUP_VIDEO_SRC}
+                    webmSrc={HERO_CUP_VIDEO_WEBM_SRC}
                     poster={HERO_CUP_POSTER_SRC}
                     alt={HERO_CUP_ALT}
                   />
@@ -524,7 +550,7 @@ export default function Home() {
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <Image
                         src={image.src}
-                        alt={`${item.name} (ilustrasi)`}
+                        alt={item.name}
                         fill
                         sizes="(max-width: 1024px) 50vw, 25vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -621,7 +647,6 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm text-zinc-500">Foto ilustrasi.</p>
         </section>
 
         <section
@@ -678,7 +703,6 @@ export default function Home() {
               );
             })}
           </ul>
-          <p className="mt-4 text-sm text-zinc-500">Foto ilustrasi.</p>
         </section>
 
         <MenuSection />
@@ -875,8 +899,7 @@ export default function Home() {
           <div className="mt-14 flex flex-col gap-3 border-t border-zinc-800 pt-8 text-xs leading-relaxed text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
             <p>
               &copy; 2026 kopidisini. Contoh tampilan (dummy) &mdash; jam
-              buka, foto asli, dan detail lain akan dilengkapi. Foto
-              ilustrasi dari Pexels.
+              buka, foto asli, dan detail lain akan dilengkapi.
             </p>
             <p className="font-bold tracking-[0.25em] text-white">
               #SEMUABISADISINI

@@ -1,19 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
 // Tipografi kopidisini: satu keluarga font, Inter, untuk seluruh UI
 // (permintaan pemilik 2026-11-14). Judul-judul besar memakai weight
-// 500 (font-medium + utilitas font-head); teks, label, tombol, dan
-// angka memakai weight yang sudah ada di kelasnya. next/font/google
-// mengunduh file font saat build/dev pertama (butuh internet sekali),
-// lalu font disajikan lokal. Kalau unduhan gagal, CSS memakai font
-// sistem cadangan yang didefinisikan di globals.css.
+// 500 (font-medium + utilitas font-head), kecuali judul hero yang
+// memakai 800; teks, label, tombol, dan angka memakai weight yang
+// sudah ada di kelasnya. Pengecualian yang disetujui pemilik:
+// judul di atas video Our Process memakai serif Playfair Display
+// (utilitas font-overlay). next/font/google mengunduh file font saat
+// build/dev pertama (butuh internet sekali), lalu font disajikan
+// lokal. Kalau unduhan gagal, CSS memakai font sistem cadangan yang
+// didefinisikan di globals.css.
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["400", "500", "600", "700", "800", "900"],
+});
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  weight: ["500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -36,7 +44,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="id" className={`h-full antialiased ${inter.variable}`}>
+    <html lang="id" className={`h-full antialiased ${inter.variable} ${playfair.variable}`}>
       <body className="min-h-full flex flex-col">
         <ScrollProgress />
         {children}

@@ -2,14 +2,16 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { useInView, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import { PROCESS_VIDEOS } from "@/lib/site";
 
-// Satu kartu langkah proses: video yang mulai berputar saat masuk
-// layar dan berhenti saat keluar layar, supaya tidak membebani
-// perangkat. Kalau pengguna meminta gerakan dikurangi, yang tampil
-// hanya foto posternya.
+// Satu baris proses: video full-bleed yang digerakkan oleh scroll —
+// posisi scroll menentukan frame videonya (scrub), jadi video hanya
+// bergerak saat pengguna meng-scroll. Tidak perlu tools tambahan:
+// pendengar scroll biasa + requestAnimationFrame sudah cukup.
+// Kalau pengguna meminta gerakan dikurangi, yang tampil hanya foto
+// posternya.
 function ProcessVideo({
   src,
   poster,
@@ -19,44 +21,85 @@ function ProcessVideo({
   poster: string;
   posterAlt: string;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const inView = useInView(videoRef, { margin: "-10% 0px -10% 0px" });
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reduceMotion) return;
-    if (inView) {
-      void video.play().catch(() => undefined);
-    } else {
-      video.pause();
-    }
-  }, [inView, reduceMotion]);
+    const container = containerRef.current;
+    if (!video || !container || reduceMotion) return;
 
-  if (reduceMotion) {
-    return (
-      <Image
-        src={poster}
-        alt={posterAlt}
-        fill
-        sizes="(max-width: 640px) 100vw, 33vw"
-        className="object-cover"
-      />
-    );
-  }
+    const syncToScroll = () => {
+      const duration = video.duration;
+      if (!Number.isFinite(duration) || duration <= 0) return;
+      const rect = container.getBoundingClientRect();
+      const total = rect.height + window.innerHeight;
+      const progress = Math.min(
+        Math.max((window.innerHeight - rect.top) / total, 0),
+        1,
+      );
+      const target = progress * duration;
+      if (Math.abs(video.currentTime - target) > 0.04) {
+        video.currentTime = target;
+      }
+    };
+
+    let raf = 0;
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(() => {
+        raf = 0;
+        syncToScroll();
+      });
+    };
+
+    syncToScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [reduceMotion]);
 
   return (
-    <video
-      ref={videoRef}
-      src={src}
-      poster={poster}
-      aria-label={posterAlt}
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      className="h-full w-full object-cover"
-    />
+    <div ref={containerRef} className="absolute inset-0 bg-zinc-800">
+      {reduceMotion ? (
+        <Image
+          src={poster}
+          alt={posterAlt}
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          src={src}
+          poster={poster}
+          aria-label={posterAlt}
+          muted
+          playsInline
+          preload="auto"
+          onLoadedMetadata={() => {
+            const video = videoRef.current;
+            const container = containerRef.current;
+            if (!video || !container || !Number.isFinite(video.duration)) {
+              return;
+            }
+            const rect = container.getBoundingClientRect();
+            const total = rect.height + window.innerHeight;
+            const progress = Math.min(
+              Math.max((window.innerHeight - rect.top) / total, 0),
+              1,
+            );
+            video.currentTime = progress * video.duration;
+          }}
+          className="h-full w-full object-cover"
+        />
+      )}
+    </div>
   );
 }
 
@@ -65,9 +108,9 @@ export default function ProcessSection() {
     <section
       id="proses"
       aria-labelledby="process-heading"
-      className="bg-black text-white"
+      className="bg-black pb-16 text-white sm:pb-24"
     >
-      <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
+      <div className="mx-auto w-full max-w-6xl px-6 pt-16 sm:pt-24">
         <div className="grid items-end gap-6 lg:grid-cols-2">
           <Reveal>
             <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-400">
@@ -88,40 +131,40 @@ export default function ProcessSection() {
             </p>
           </Reveal>
         </div>
-
-        <ul className="mt-12 grid gap-4 sm:grid-cols-3">
-          {PROCESS_VIDEOS.map((step, index) => (
-            <li key={step.title}>
-              <Reveal delay={index * 110}>
-                <article className="group overflow-hidden rounded-3xl bg-zinc-900 ring-1 ring-zinc-800 transition-[box-shadow,translate] duration-300 hover:-translate-y-1 hover:ring-zinc-600">
-                  <div className="relative aspect-video overflow-hidden bg-zinc-800">
-                    <ProcessVideo
-                      src={step.src}
-                      poster={step.poster}
-                      posterAlt={step.posterAlt}
-                    />
-                    <span className="absolute left-3 top-3 rounded-full bg-black/70 px-2.5 py-1 font-display text-[11px] font-bold text-white backdrop-blur-sm">
-                      {step.step}
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-display text-xl font-bold leading-snug">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-                      {step.description}
-                    </p>
-                  </div>
-                </article>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-
-        <p className="mt-6 text-sm text-zinc-500">
-          Video &amp; foto ilustrasi dari Pexels.
-        </p>
       </div>
+
+      <ul className="mt-12 flex flex-col">
+        {PROCESS_VIDEOS.map((step) => (
+          <li
+            key={step.title}
+            className="relative h-[60vh] min-h-[420px] w-full overflow-hidden sm:h-[70vh]"
+          >
+            <ProcessVideo
+              src={step.src}
+              poster={step.poster}
+              posterAlt={step.posterAlt}
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"
+            />
+            <span className="absolute left-4 top-4 rounded-full bg-black/70 px-2.5 py-1 font-display text-[11px] font-bold text-white backdrop-blur-sm sm:left-6 sm:top-6">
+              {step.step}
+            </span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+              <Reveal>
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/90 drop-shadow-md sm:text-sm">
+                  {step.overlayEyebrow}
+                </p>
+                <h3 className="mx-auto mt-4 max-w-3xl font-overlay text-4xl leading-[1.05] text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
+                  {step.overlayHeadline}
+                </h3>
+              </Reveal>
+            </div>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

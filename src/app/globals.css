@@ -11,6 +11,7 @@
   --font-sans: var(--font-inter), Inter, Arial, Helvetica, sans-serif;
   --font-display: var(--font-inter), Inter, Arial, Helvetica, sans-serif;
   --font-head: var(--font-inter), Inter, Arial, Helvetica, sans-serif;
+  --font-overlay: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-kopi: #8c5e2a;
   --color-kopi-soft: #d9a45b;

@@ -94,6 +94,7 @@ export const CUP_HERO_BACK_ALT =
 // pemilik, sudah di-crop ke cup-nya saja) + poster JPG-nya. File
 // biner, ditambahkan lewat git oleh pemilik repo.
 export const HERO_CUP_VIDEO_SRC = "/hero-cup-rotate.mp4";
+export const HERO_CUP_VIDEO_WEBM_SRC = "/hero-cup-rotate.webm";
 export const HERO_CUP_POSTER_SRC = "/hero-cup-poster.jpg";
 export const HERO_CUP_ALT =
   "Cup kopi panas kopidisini berputar 360 derajat, tampak depan dan belakang.";
@@ -115,6 +116,8 @@ export const PROCESS_VIDEOS = [
   {
     step: "01",
     title: "Roasting",
+    overlayEyebrow: "Roasted to reveal",
+    overlayHeadline: "Bold Character in Every Bean.",
     description:
       "Biji kopi pilihan di-roasting untuk mengeluarkan karakter rasanya. Kami juga melayani jasa roasting biji kopi.",
     src: "https://videos.pexels.com/video-files/13882353/13882353-hd_1280_720_25fps.mp4",
@@ -125,6 +128,8 @@ export const PROCESS_VIDEOS = [
   {
     step: "02",
     title: "Grinding",
+    overlayEyebrow: "Ground with care",
+    overlayHeadline: "Fine, Fresh, and Ready.",
     description:
       "Biji yang sudah di-roasting digiling sesuai cara seduh yang dipakai, supaya ekstraksinya seimbang.",
     src: "https://videos.pexels.com/video-files/2849942/2849942-hd_1280_720_24fps.mp4",
@@ -135,6 +140,8 @@ export const PROCESS_VIDEOS = [
   {
     step: "03",
     title: "Extraction",
+    overlayEyebrow: "Brewed by baristas",
+    overlayHeadline: "Every Drop Counts.",
     description:
       "Barista mengekstraksi kopi dengan mesin espresso, cangkir demi cangkir, saat dipesan.",
     src: "https://videos.pexels.com/video-files/7487671/7487671-hd_1280_720_24fps.mp4",

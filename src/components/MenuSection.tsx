@@ -109,7 +109,7 @@ export default function MenuSection() {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={image.src}
-                  alt={`${item.name} (ilustrasi)`}
+                  alt={item.name}
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -146,9 +146,8 @@ export default function MenuSection() {
       </ul>
 
       <p aria-live="polite" className="mt-8 text-sm text-zinc-500">
-        Menampilkan {visible.length} dari {MENU_ITEMS.length} menu. Foto
-        ilustrasi, bukan foto asli kedai. Bubuk dan biji kopi tersedia dalam
-        kemasan 250g, 500g, dan 1000g.
+        Menampilkan {visible.length} dari {MENU_ITEMS.length} menu. Bubuk
+        dan biji kopi tersedia dalam kemasan 250g, 500g, dan 1000g.
       </p>
     </section>
   );
