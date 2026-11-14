@@ -41,7 +41,7 @@ export default function MenuSection() {
         06 &middot; Our Menu
       </p>
       <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
-        <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl">
+        <h2 className="font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl">
           Pick Your Favorite.
         </h2>
         <p className="max-w-sm text-sm leading-relaxed text-zinc-600">

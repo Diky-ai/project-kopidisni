@@ -1,6 +1,7 @@
 import Image from "next/image";
 import BottomNav from "@/components/BottomNav";
 import CupImage from "@/components/CupImage";
+import HeroCupVideo from "@/components/HeroCupVideo";
 import LogoImage from "@/components/LogoImage";
 import MenuSection from "@/components/MenuSection";
 import ProcessSection from "@/components/ProcessSection";
@@ -13,11 +14,12 @@ import {
 } from "@/data/menu";
 import {
   ADDRESS,
-  CUP_HERO_ALT,
-  CUP_HERO_SRC,
   CUP_HOT_ALT,
   CUP_HOT_FALLBACK,
   CUP_HOT_SRC,
+  HERO_CUP_ALT,
+  HERO_CUP_POSTER_SRC,
+  HERO_CUP_VIDEO_SRC,
   IMAGES,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
@@ -62,26 +64,6 @@ const PILLARS = [
     ),
   },
   {
-    name: "Billiard",
-    description: "Fasilitas nyaman berstandar tinggi, siap dimainkan.",
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <text
-          x="12"
-          y="16"
-          textAnchor="middle"
-          fontSize="11"
-          fontWeight="700"
-          fill="currentColor"
-          stroke="none"
-        >
-          8
-        </text>
-      </>
-    ),
-  },
-  {
     name: "Coffee Bean Roasting",
     description: "Jasa roasting untuk biji kopi pilihanmu.",
     icon: (
@@ -117,12 +99,6 @@ const CATEGORY_CARDS = [
     category: "JAJANDISINI" as const,
     image: IMAGES.pastry,
   },
-];
-
-const STATS = [
-  { value: "46", label: "Menu items" },
-  { value: "2 in 1", label: "Coffee & billiard" },
-  { value: "2021", label: "Founded" },
 ];
 
 const GALLERY_ITEMS = [
@@ -200,22 +176,22 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        {/* Hero ala referensi: judul besar di kiri, cup miring tanpa
-            latar di kanan, di atas latar abu sangat terang. */}
+        {/* Hero ala referensi: judul besar di kiri, video cup
+            berputar 360 derajat yang dimiringkan sedikit di kanan,
+            di atas latar abu sangat terang. */}
         <section id="beranda" className="overflow-hidden bg-zinc-100">
           <div className="mx-auto w-full max-w-6xl px-6 pb-14 pt-10 sm:pt-14 lg:pb-20 lg:pt-20">
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <Reveal>
-                <h1 className="font-display text-[3.25rem] font-black leading-[0.95] tracking-[-0.02em] sm:text-7xl lg:text-8xl">
+                <h1 className="font-head text-[3.25rem] font-medium leading-[0.95] tracking-[-0.02em] sm:text-7xl lg:text-8xl">
                   Kopi Enak,
                   <br />
                   Di Sini.
                 </h1>
                 <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
                   kopidisini adalah ruang berkumpul modern: kopi premium
-                  racikan barista dan meja billiard yang nyaman dalam satu
-                  tempat. Untuk nongkrong, bekerja, bersantai, dan main
-                  bersama. Di sini, semua bisa.
+                  racikan barista dalam ruang yang nyaman. Untuk
+                  nongkrong, bekerja, dan bersantai. Di sini, semua bisa.
                 </p>
                 <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
                   <a
@@ -265,22 +241,17 @@ export default function Home() {
                     opacity="0.35"
                   />
                 </svg>
-                <div className="relative rotate-[12deg] drop-shadow-2xl">
-                  <CupImage
-                    src={CUP_HERO_SRC}
-                    fallbackSrc={IMAGES.icedCoffee.src}
-                    alt={CUP_HERO_ALT}
-                    width={533}
-                    height={865}
-                    priority
-                    sizes="(max-width: 1024px) 80vw, 40vw"
-                    className="h-auto w-full"
+                <div className="relative rotate-[6deg]">
+                  <HeroCupVideo
+                    src={HERO_CUP_VIDEO_SRC}
+                    poster={HERO_CUP_POSTER_SRC}
+                    alt={HERO_CUP_ALT}
                   />
                 </div>
                 <div className="absolute bottom-8 left-0 z-10 max-w-[16rem] rounded-2xl bg-white px-5 py-4 text-black shadow-lg">
                   <p className="text-sm font-extrabold">Est. 2021</p>
                   <p className="mt-1 text-xs leading-relaxed text-zinc-600">
-                    Kopi &amp; billiard dalam satu tempat, di Aceh Utara.
+                    Ruang berkumpul modern di Aceh Utara.
                   </p>
                 </div>
               </Reveal>
@@ -289,41 +260,7 @@ export default function Home() {
         </section>
 
         <div className="mx-auto w-full max-w-6xl px-6 pt-6 sm:pt-8">
-          <div className="grid gap-4">
-
-            <ul
-              aria-label="Sekilas kopidisini"
-              className="grid grid-cols-3 gap-3 sm:gap-4"
-            >
-              {STATS.map((stat, index) => (
-                <li key={stat.label}>
-                  <Reveal delay={index * 90}>
-                    <div
-                      className={
-                        index === 1
-                          ? "rounded-3xl bg-black px-3 py-5 text-center text-white sm:py-6"
-                          : "rounded-3xl border-2 border-black bg-white px-3 py-5 text-center sm:py-6"
-                      }
-                    >
-                      <p className="font-display text-2xl font-black sm:text-4xl">
-                        {stat.value}
-                      </p>
-                      <p
-                        className={
-                          index === 1
-                            ? "mt-2 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-400 sm:text-xs"
-                            : "mt-2 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-500 sm:text-xs"
-                        }
-                      >
-                        {stat.label}
-                      </p>
-                    </div>
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
-
-            <dl className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+          <dl className="grid gap-3 sm:grid-cols-3 sm:gap-4">
               <Reveal className="rounded-3xl bg-zinc-100 p-5">
                 <dt className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
                   Location
@@ -353,8 +290,7 @@ export default function Home() {
                   </a>
                 </dd>
               </Reveal>
-            </dl>
-          </div>
+          </dl>
         </div>
 
         {/* Pilar: grid garis halus di dalam satu bingkai. */}
@@ -362,7 +298,7 @@ export default function Home() {
           aria-label="Yang kami tawarkan"
           className="mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-20"
         >
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-200 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-200 lg:grid-cols-3">
             {PILLARS.map((pillar, index) => (
               <Reveal
                 key={pillar.name}
@@ -397,7 +333,7 @@ export default function Home() {
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
               <Reveal className="lg:col-span-5">
                 <Eyebrow>01 &middot; About Us</Eyebrow>
-                <h2 className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl">
+                <h2 className="mt-6 font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl">
                   Dari Kamar Kecil, Untuk Semua Yang Datang.
                 </h2>
                 <div className="mt-8 space-y-5 text-base leading-relaxed text-zinc-600">
@@ -406,12 +342,12 @@ export default function Home() {
                     yang disewa, dengan menu yang masih terbatas. Perlahan,
                     kamar itu tumbuh menjadi ruang F&amp;B yang nyaman dengan
                     menu yang makin menarik, lalu bertambah jasa roasting biji
-                    kopi dan area billiard.
+                    kopi.
                   </p>
                   <p>
-                    Kami percaya secangkir kopi berkualitas dan permainan
-                    billiard yang menyenangkan adalah kombinasi sempurna untuk
-                    pengalaman sosial yang berbeda. Karena itu kami membangun
+                    Kami percaya secangkir kopi berkualitas dan suasana yang
+                    hangat adalah kombinasi sempurna untuk pengalaman sosial
+                    yang berbeda. Karena itu kami membangun
                     lebih dari sekadar tempat jualan: kami membangun komunitas,
                     tempat setiap pengunjung merasa menjadi bagiannya.
                   </p>
@@ -456,15 +392,15 @@ export default function Home() {
                   <figure>
                     <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
                       <Image
-                        src={IMAGES.billiard.src}
-                        alt={IMAGES.billiard.alt}
+                        src={IMAGES.barista.src}
+                        alt={IMAGES.barista.alt}
                         fill
                         sizes="(max-width: 1024px) 50vw, 30vw"
                         className="object-cover"
                       />
                     </div>
                     <figcaption className="mt-2 text-xs text-zinc-500">
-                      Fasilitas billiard yang nyaman.
+                      Barista profesional di balik setiap cangkir.
                     </figcaption>
                   </figure>
                 </div>
@@ -493,9 +429,9 @@ export default function Home() {
                   },
                   {
                     phase: "Today",
-                    title: "Kopi, roasting & billiard",
+                    title: "Kopi & roasting",
                     description:
-                      "Jasa roasting biji kopi dan area billiard melengkapi kedai.",
+                      "Jasa roasting biji kopi melengkapi kedai.",
                   },
                 ].map((step, index) => (
                   <li key={step.title}>
@@ -568,7 +504,7 @@ export default function Home() {
             <Eyebrow>03 &middot; Signature</Eyebrow>
             <h2
               id="signature-heading"
-              className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl"
+              className="mt-6 font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl"
             >
               Most Wanted.
             </h2>
@@ -629,7 +565,7 @@ export default function Home() {
             <Eyebrow>04 &middot; Ambience</Eyebrow>
             <h2
               id="gallery-heading"
-              className="mt-6 max-w-xl font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl"
+              className="mt-6 max-w-xl font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl"
             >
               A Place To Linger.
             </h2>
@@ -696,7 +632,7 @@ export default function Home() {
             <Eyebrow>05 &middot; Categories</Eyebrow>
             <h2
               id="categories-heading"
-              className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl"
+              className="mt-6 font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl"
             >
               Start With A Category.
             </h2>
@@ -750,7 +686,7 @@ export default function Home() {
         <section id="lokasi" className="mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-24">
           <Reveal>
             <Eyebrow>07 &middot; Visit Us</Eyebrow>
-            <h2 className="mt-6 max-w-xl font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl">
+            <h2 className="mt-6 max-w-xl font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl">
               Drop By, Or Order From Anywhere.
             </h2>
           </Reveal>
@@ -763,7 +699,7 @@ export default function Home() {
                 {ADDRESS}, Indonesia
               </address>
               <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-400">
-                Datang untuk kopinya, tinggal untuk billiardnya. Suasana kami
+                Datang untuk kopinya, tinggal untuk suasananya. Suasana kami
                 hangat, modern, dan ramah untuk semua kalangan.
               </p>
               <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-400">
@@ -818,6 +754,32 @@ export default function Home() {
             </Reveal>
           </div>
         </section>
+
+        {/* Billiard sebagai proyek berikutnya — tanpa detail fasilitas
+            sampai pemilik memastikan konsepnya. */}
+        <section
+          aria-label="Billiard segera hadir"
+          className="mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-24"
+        >
+          <Reveal>
+            <div className="rounded-[2rem] bg-black px-6 py-12 text-center text-white sm:px-10 sm:py-16">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-400">
+                08 &middot; Coming Soon
+              </p>
+              <h2 className="mt-6 font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl">
+                Billiard.
+              </h2>
+              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-zinc-400">
+                Billiard segera hadir di kopidisini sebagai proyek
+                berikutnya. Nantikan kabarnya — untuk sekarang, nikmati
+                dulu kopinya.
+              </p>
+              <p className="mt-8 inline-flex rounded-full border border-white/40 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em]">
+                Segera Hadir
+              </p>
+            </div>
+          </Reveal>
+        </section>
       </main>
 
       <footer className="bg-black text-white">
@@ -837,7 +799,7 @@ export default function Home() {
                 }
               />
               <p className="mt-6 text-sm font-bold uppercase tracking-[0.25em] text-zinc-400">
-                Coffee &amp; billiard in one place
+                Premium coffee in Aceh Utara
               </p>
               <p className="mt-6 max-w-xs text-sm leading-relaxed text-zinc-400">
                 {ADDRESS}, Indonesia. Pemesanan dilayani lewat halaman

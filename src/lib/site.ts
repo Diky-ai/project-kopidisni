@@ -82,10 +82,21 @@ export const CUP_HOT_SRC = "/cup-hot.jpg";
 export const CUP_ICE_ALT = "Cup es kopi kopidisini dengan logo pin.";
 export const CUP_HOT_ALT = "Cup kopi panas kopidisini dengan logo pin.";
 // Cup hero: potongan cup kraft tanpa latar (PNG transparan) untuk
-// hero ala referensi — cup miring mengambang di atas latar terang.
+// hero — cup berputar 3D 360 derajat, sisi depan (logo pin) dan sisi
+// belakang (tulisan kemasan) dalam satu bingkai yang sama.
 export const CUP_HERO_SRC = "/cup-hero.png";
 export const CUP_HERO_ALT =
   "Cup kopi panas kopidisini dengan logo pin, tanpa latar.";
+export const CUP_HERO_BACK_SRC = "/cup-hero-back.png";
+export const CUP_HERO_BACK_ALT =
+  "Cup kopi panas kopidisini tampak belakang dengan tulisan kemasan, tanpa latar.";
+// Video cup hero: render 3D cup berputar 360 derajat (file MP4 dari
+// pemilik, sudah di-crop ke cup-nya saja) + poster JPG-nya. File
+// biner, ditambahkan lewat git oleh pemilik repo.
+export const HERO_CUP_VIDEO_SRC = "/hero-cup-rotate.mp4";
+export const HERO_CUP_POSTER_SRC = "/hero-cup-poster.jpg";
+export const HERO_CUP_ALT =
+  "Cup kopi panas kopidisini berputar 360 derajat, tampak depan dan belakang.";
 export const CUP_HOT_FALLBACK = {
   src: "https://images.pexels.com/photos/6772461/pexels-photo-6772461.jpeg?auto=compress&cs=tinysrgb&w=800&loading=lazy",
   alt: "Secangkir latte dengan latte art berbentuk hati.",
@@ -140,7 +151,7 @@ export const VALUES = [
   },
   {
     name: "Kualitas",
-    description: "Setiap cangkir dan setiap meja memegang standar tinggi.",
+    description: "Setiap cangkir dan setiap layanan memegang standar tinggi.",
   },
   {
     name: "Kebersamaan",

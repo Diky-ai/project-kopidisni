@@ -8,8 +8,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-jost), Futura, "Century Gothic", Arial, Helvetica, sans-serif;
-  --font-display: var(--font-jost), Futura, "Century Gothic", Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-inter), Inter, Arial, Helvetica, sans-serif;
+  --font-display: var(--font-inter), Inter, Arial, Helvetica, sans-serif;
+  --font-head: var(--font-inter), Inter, Arial, Helvetica, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-kopi: #8c5e2a;
   --color-kopi-soft: #d9a45b;
@@ -24,7 +25,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-jost), Futura, "Century Gothic", Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Inter, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -64,6 +65,16 @@ footer :focus-visible {
 
 .nav-link:hover::after {
   transform: scaleX(1);
+}
+
+/* Video cup hero: latar videonya dibaurkan ke latar hero (zinc-100)
+   lewat multiply, dan tepinya di-feather agar tidak terlihat kotak. */
+.hero-cup-media {
+  mix-blend-mode: multiply;
+}
+
+.hero-cup-feather {
+  box-shadow: inset 0 0 48px 28px #f4f4f5;
 }
 
 @media (prefers-reduced-motion: reduce) {

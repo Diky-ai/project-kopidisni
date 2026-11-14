@@ -76,7 +76,7 @@ export default function ProcessSection() {
             </p>
             <h2
               id="process-heading"
-              className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-4xl"
+              className="mt-6 font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl"
             >
               From Bean To Cup.
             </h2>

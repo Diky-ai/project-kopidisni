@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "kopidisini",
     short_name: "kopidisini",
     description:
-      "Kedai kopi dan billiard di Aceh Utara. Kopi premium, meja billiard yang nyaman, dan ruang komunitas. #SEMUABISADISINI",
+      "Kedai kopi di Aceh Utara. Kopi premium racikan barista dan ruang komunitas yang nyaman. #SEMUABISADISINI",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
