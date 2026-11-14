@@ -2,14 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { useReducedMotion } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import { PROCESS_VIDEOS } from "@/lib/site";
 
-// Satu baris proses: video full-bleed yang digerakkan oleh scroll —
-// posisi scroll menentukan frame videonya (scrub), jadi video hanya
-// bergerak saat pengguna meng-scroll. Tidak perlu tools tambahan:
-// pendengar scroll biasa + requestAnimationFrame sudah cukup.
+// Satu baris proses: video full-bleed yang berputar sendiri selama
+// terlihat di layar (seperti semula), berhenti saat keluar layar.
 // Kalau pengguna meminta gerakan dikurangi, yang tampil hanya foto
 // posternya.
 function ProcessVideo({
@@ -24,44 +22,17 @@ function ProcessVideo({
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
+  const inView = useInView(containerRef, { amount: 0.35 });
 
   useEffect(() => {
     const video = videoRef.current;
-    const container = containerRef.current;
-    if (!video || !container || reduceMotion) return;
-
-    const syncToScroll = () => {
-      const duration = video.duration;
-      if (!Number.isFinite(duration) || duration <= 0) return;
-      const rect = container.getBoundingClientRect();
-      const total = rect.height + window.innerHeight;
-      const progress = Math.min(
-        Math.max((window.innerHeight - rect.top) / total, 0),
-        1,
-      );
-      const target = progress * duration;
-      if (Math.abs(video.currentTime - target) > 0.04) {
-        video.currentTime = target;
-      }
-    };
-
-    let raf = 0;
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(() => {
-        raf = 0;
-        syncToScroll();
-      });
-    };
-
-    syncToScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [reduceMotion]);
+    if (!video || reduceMotion) return;
+    if (inView) {
+      void video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [inView, reduceMotion]);
 
   return (
     <div ref={containerRef} className="absolute inset-0 bg-zinc-800">
@@ -80,22 +51,9 @@ function ProcessVideo({
           poster={poster}
           aria-label={posterAlt}
           muted
+          loop
           playsInline
-          preload="auto"
-          onLoadedMetadata={() => {
-            const video = videoRef.current;
-            const container = containerRef.current;
-            if (!video || !container || !Number.isFinite(video.duration)) {
-              return;
-            }
-            const rect = container.getBoundingClientRect();
-            const total = rect.height + window.innerHeight;
-            const progress = Math.min(
-              Math.max((window.innerHeight - rect.top) / total, 0),
-              1,
-            );
-            video.currentTime = progress * video.duration;
-          }}
+          preload="metadata"
           className="h-full w-full object-cover"
         />
       )}

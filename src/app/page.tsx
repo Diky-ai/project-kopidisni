@@ -1,6 +1,5 @@
 import Image from "next/image";
 import BottomNav from "@/components/BottomNav";
-import CupImage from "@/components/CupImage";
 import HeroCupVideo from "@/components/HeroCupVideo";
 import LogoImage from "@/components/LogoImage";
 import MenuSection from "@/components/MenuSection";
@@ -14,9 +13,6 @@ import {
 } from "@/data/menu";
 import {
   ADDRESS,
-  CUP_HOT_ALT,
-  CUP_HOT_FALLBACK,
-  CUP_HOT_SRC,
   HERO_CUP_ALT,
   HERO_CUP_POSTER_SRC,
   HERO_CUP_VIDEO_SRC,
@@ -24,6 +20,8 @@ import {
   IMAGES,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
+  TIKTOK_HANDLE,
+  TIKTOK_URL,
   MAPS_URL,
   ORDER_MODES,
   ORDER_URL,
@@ -79,6 +77,27 @@ const PILLARS = [
         <circle cx="9" cy="9" r="3.5" />
         <circle cx="15.5" cy="10" r="2.8" />
         <path d="M4 20c0-3 2.5-5 5-5s5 2 5 5M14 20c.5-2.5 2-4 4-4 1.8 0 3 1.2 3.5 3" />
+      </>
+    ),
+  },
+  {
+    name: "Billiard",
+    description: "Coming soon.",
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="4" />
+        <text
+          x="12"
+          y="14.5"
+          textAnchor="middle"
+          fontSize="6"
+          fontWeight="700"
+          fill="currentColor"
+          stroke="none"
+        >
+          8
+        </text>
       </>
     ),
   },
@@ -138,6 +157,69 @@ function CartIcon({ className }: { className?: string }) {
       <circle cx="19" cy="21" r="1" />
       <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
     </svg>
+  );
+}
+
+// Ikon Instagram (garis, senada ikon lain) dan TikTok untuk tautan
+// akun sosial media. Ikonnya yang diklik, bukan nama akunnya.
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+    </svg>
+  );
+}
+
+// Dua ikon akun sosial media yang bisa diklik. Warna mengikuti
+// elemen pembungkus (currentColor).
+function SocialLinks({ className }: { className?: string }) {
+  return (
+    <div className={`flex items-center gap-4 ${className ?? ""}`}>
+      <a
+        href={INSTAGRAM_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Instagram ${INSTAGRAM_HANDLE}`}
+        className="transition-opacity hover:opacity-60"
+      >
+        <InstagramIcon className="h-6 w-6" />
+      </a>
+      <a
+        href={TIKTOK_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`TikTok ${TIKTOK_HANDLE}`}
+        className="transition-opacity hover:opacity-60"
+      >
+        <TikTokIcon className="h-6 w-6" />
+      </a>
+    </div>
   );
 }
 
@@ -220,15 +302,6 @@ export default function Home() {
                 </p>
                 <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
                   <a
-                    href={ORDER_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex min-h-11 items-center rounded-full bg-black px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition-all hover:opacity-80 active:scale-95"
-                  >
-                    Pesan Sekarang
-                    <span aria-hidden="true"> &rarr;</span>
-                  </a>
-                  <a
                     href="#menu"
                     className="inline-flex min-h-12 items-center text-base font-bold uppercase tracking-[0.12em] text-black underline decoration-zinc-400 underline-offset-8 transition-colors hover:decoration-black"
                   >
@@ -303,17 +376,10 @@ export default function Home() {
               </Reveal>
               <Reveal delay={180} className="rounded-3xl bg-zinc-100 p-5">
                 <dt className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-                  Instagram
+                  Social Media
                 </dt>
-                <dd className="mt-2 text-sm leading-relaxed">
-                  <a
-                    href={INSTAGRAM_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="underline underline-offset-4"
-                  >
-                    {INSTAGRAM_HANDLE}
-                  </a>
+                <dd className="mt-3">
+                  <SocialLinks className="text-black" />
                 </dd>
               </Reveal>
           </dl>
@@ -324,7 +390,7 @@ export default function Home() {
           aria-label="Yang kami tawarkan"
           className="mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-20"
         >
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-200 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-200 lg:grid-cols-4">
             {PILLARS.map((pillar, index) => (
               <Reveal
                 key={pillar.name}
@@ -357,7 +423,7 @@ export default function Home() {
         <section id="tentang" className="bg-zinc-100">
           <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-              <Reveal className="lg:col-span-5">
+              <Reveal className="lg:col-span-8">
                 <Eyebrow>01 &middot; About Us</Eyebrow>
                 <h2 className="mt-6 font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl">
                   Dari Kamar Kecil, Untuk Semua Yang Datang.
@@ -382,53 +448,6 @@ export default function Home() {
                     terutama Fakultas Agribisnis, dan menerima mahasiswa
                     magang.
                   </p>
-                </div>
-              </Reveal>
-              <Reveal delay={120} className="lg:col-span-7">
-                <div className="grid grid-cols-2 gap-4">
-                  <figure className="row-span-2">
-                    <div className="relative h-full min-h-72 overflow-hidden rounded-3xl">
-                      <CupImage
-                        src={CUP_HOT_SRC}
-                        fallbackSrc={CUP_HOT_FALLBACK.src}
-                        alt={CUP_HOT_ALT}
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 30vw"
-                        className="object-cover"
-                      />
-                    </div>
-                    <figcaption className="mt-2 text-xs text-zinc-500">
-                      Kopi panas, diseduh saat dipesan.
-                    </figcaption>
-                  </figure>
-                  <figure>
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-                      <Image
-                        src={IMAGES.beans.src}
-                        alt={IMAGES.beans.alt}
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 30vw"
-                        className="object-cover"
-                      />
-                    </div>
-                    <figcaption className="mt-2 text-xs text-zinc-500">
-                      Biji kopi pilihan, di-roasting sendiri.
-                    </figcaption>
-                  </figure>
-                  <figure>
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-                      <Image
-                        src={IMAGES.barista.src}
-                        alt={IMAGES.barista.alt}
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 30vw"
-                        className="object-cover"
-                      />
-                    </div>
-                    <figcaption className="mt-2 text-xs text-zinc-500">
-                      Barista profesional di balik setiap cangkir.
-                    </figcaption>
-                  </figure>
                 </div>
               </Reveal>
             </div>
@@ -566,15 +585,6 @@ export default function Home() {
                       <p className="mt-2 whitespace-nowrap text-sm font-bold tabular-nums sm:text-base">
                         {formatPrice(item.price)}
                       </p>
-                      <a
-                        href={ORDER_URL}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`Pesan ${item.name}`}
-                        className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-black px-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition-all hover:opacity-80 active:scale-95"
-                      >
-                        Pesan
-                      </a>
                     </div>
                   </Reveal>
                 </li>
@@ -728,27 +738,10 @@ export default function Home() {
               </p>
               <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-400">
                 Jam buka akan diumumkan di sini. Untuk kabar terbaru, pantau
-                Instagram kami di{" "}
-                <a
-                  href={INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-bold text-white underline underline-offset-4"
-                >
-                  {INSTAGRAM_HANDLE}
-                </a>
-                .
+                akun kami:
               </p>
+              <SocialLinks className="mt-4 text-white" />
               <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href={ORDER_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-12 items-center rounded-full bg-white px-7 py-3.5 text-base font-bold uppercase tracking-[0.12em] text-black transition-colors hover:bg-zinc-200 active:scale-95"
-                >
-                  Pesan Sekarang
-                  <span aria-hidden="true"> &rarr;</span>
-                </a>
                 <a
                   href={MAPS_URL}
                   target="_blank"
@@ -863,29 +856,11 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-                  Order
+                  Find Us
                 </h3>
                 <ul className="mt-4 space-y-3">
                   <li>
-                    <a
-                      href={ORDER_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-bold text-white hover:underline"
-                    >
-                      Pesan Sekarang
-                      <span aria-hidden="true"> &rarr;</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={INSTAGRAM_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hover:underline"
-                    >
-                      Instagram {INSTAGRAM_HANDLE}
-                    </a>
+                    <SocialLinks className="text-white" />
                   </li>
                   <li>
                     <a href={MAPS_URL} target="_blank" rel="noreferrer" className="hover:underline">

@@ -1,5 +1,3 @@
-import { ORDER_URL } from "@/lib/site";
-
 // Navigasi bawah khusus HP (gaya aplikasi/PWA). Hanya tampil di
 // layar kecil; di layar besar navigasi atas yang dipakai.
 const ITEMS = [
@@ -45,7 +43,7 @@ export default function BottomNav() {
       aria-label="Bottom navigation"
       className="fixed inset-x-0 bottom-0 z-20 border-t border-zinc-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden"
     >
-      <ul className="grid grid-cols-5">
+      <ul className="grid grid-cols-4">
         {ITEMS.map((item) => (
           <li key={item.href}>
             <a
@@ -68,28 +66,6 @@ export default function BottomNav() {
             </a>
           </li>
         ))}
-        <li>
-          <a
-            href={ORDER_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="flex min-h-14 flex-col items-center justify-center gap-1 bg-black px-1 text-[11px] font-bold text-white transition-transform active:scale-95"
-          >
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-5 w-5"
-            >
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-            Pesan
-          </a>
-        </li>
       </ul>
     </nav>
   );

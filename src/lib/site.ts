@@ -3,8 +3,10 @@
 // tersedia, jadi belum ditampilkan sebagai fakta di situs ini.
 
 export const ORDER_URL = "https://kopdis.antarinmakan.com";
-export const INSTAGRAM_URL = "https://www.instagram.com/kopidisini_official";
-export const INSTAGRAM_HANDLE = "@kopidisini_official";
+export const INSTAGRAM_URL = "https://www.instagram.com/kopidisini.official";
+export const INSTAGRAM_HANDLE = "@kopidisini.official";
+export const TIKTOK_URL = "https://www.tiktok.com/@kopidisini.official";
+export const TIKTOK_HANDLE = "@kopidisini.official";
 export const ADDRESS = "Jl. kiara payung no. A1, komp. AAF, Aceh Utara (Kab.)";
 
 export const ORDER_MODES = [

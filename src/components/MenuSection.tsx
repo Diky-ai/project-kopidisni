@@ -9,7 +9,6 @@ import {
   imageForMenuItem,
   type MenuCategory,
 } from "@/data/menu";
-import { ORDER_URL } from "@/lib/site";
 
 const FILTERS: Array<{ label: string; value: MenuCategory | "SEMUA" }> = [
   { label: "All", value: "SEMUA" },
@@ -130,15 +129,6 @@ export default function MenuSection() {
                 <p className="mt-2 whitespace-nowrap text-sm font-bold tabular-nums sm:text-base">
                   {formatPrice(item.price)}
                 </p>
-                <a
-                  href={ORDER_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Pesan ${item.name}`}
-                  className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-black px-4 text-xs font-bold uppercase tracking-[0.12em] text-white transition-all hover:opacity-80 active:scale-95"
-                >
-                  Pesan
-                </a>
               </div>
             </motion.li>
           );
