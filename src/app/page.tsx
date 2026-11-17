@@ -13,6 +13,11 @@ import {
 } from "@/data/menu";
 import {
   ADDRESS,
+  BIKE_INSTAGRAM_HANDLE,
+  BIKE_INSTAGRAM_URL,
+  BIKE_TIKTOK_HANDLE,
+  BIKE_TIKTOK_URL,
+  BIKE_VIDEO,
   HERO_CUP_ALT,
   HERO_CUP_POSTER_SRC,
   HERO_CUP_VIDEO_SRC,
@@ -23,6 +28,7 @@ import {
   TIKTOK_HANDLE,
   TIKTOK_URL,
   MAPS_URL,
+  NEW_HOME_PHOTOS,
   ORDER_MODES,
   ORDER_URL,
   VALUES,
@@ -81,23 +87,13 @@ const PILLARS = [
     ),
   },
   {
-    name: "Billiard",
-    description: "Coming soon.",
+    name: "Bike Shop",
+    description: "Upgrade & restorasi sepedamu #disiniaja.",
     icon: (
       <>
-        <circle cx="12" cy="12" r="9" />
-        <circle cx="12" cy="12" r="4" />
-        <text
-          x="12"
-          y="14.5"
-          textAnchor="middle"
-          fontSize="6"
-          fontWeight="700"
-          fill="currentColor"
-          stroke="none"
-        >
-          8
-        </text>
+        <circle cx="6" cy="17" r="3.5" />
+        <circle cx="18" cy="17" r="3.5" />
+        <path d="M6 17 9.5 9h5L18 17M9.5 9 8 6h2.5M14.5 9l1.5-3H18" />
       </>
     ),
   },
@@ -745,30 +741,161 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Billiard sebagai proyek berikutnya — tanpa detail fasilitas
-            sampai pemilik memastikan konsepnya. */}
+        {/* Banner bike shop disini.bike — video full-bleed seperti
+            baris Our Process, teks serif di atasnya. Kalau pengguna
+            meminta gerakan dikurangi, yang tampil hanya foto
+            posternya. */}
         <section
-          aria-label="Billiard segera hadir"
-          className="mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-24"
+          aria-label="disini.bike, bike shop"
+          className="relative h-[60vh] min-h-[420px] w-full overflow-hidden sm:h-[70vh]"
         >
-          <Reveal>
-            <div className="rounded-[2rem] bg-black px-6 py-12 text-center text-white sm:px-10 sm:py-16">
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-400">
-                08 &middot; Coming Soon
+          <div className="absolute inset-0 bg-zinc-800">
+            <Image
+              src={BIKE_VIDEO.poster}
+              alt={BIKE_VIDEO.posterAlt}
+              fill
+              sizes="100vw"
+              className="object-cover motion-safe:hidden"
+            />
+            <video
+              src={BIKE_VIDEO.src}
+              poster={BIKE_VIDEO.poster}
+              aria-label={BIKE_VIDEO.posterAlt}
+              muted
+              loop
+              autoPlay
+              playsInline
+              preload="metadata"
+              className="h-full w-full object-cover motion-reduce:hidden"
+            />
+          </div>
+          <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white">
+            <Reveal>
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/90 drop-shadow-md sm:text-sm">
+                08 &middot; Bike Shop
               </p>
-              <h2 className="mt-6 font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl">
-                Billiard.
+              <h2 className="mx-auto mt-4 font-overlay text-4xl leading-[1.05] text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
+                disini.bike.
               </h2>
-              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-zinc-400">
-                Billiard segera hadir di kopidisini sebagai proyek
-                berikutnya. Nantikan kabarnya — untuk sekarang, nikmati
-                dulu kopinya.
+              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/85 drop-shadow-md">
+                Upgrade dan restorasi sepedamu #disiniaja. Sepeda
+                rakitan, perawatan, dan konsultasi — dari MTB dan
+                downhill sampai commuter bike.
               </p>
-              <p className="mt-8 inline-flex rounded-full border border-white/40 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em]">
-                Segera Hadir
-              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={BIKE_INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Instagram ${BIKE_INSTAGRAM_HANDLE}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-sm transition-opacity hover:opacity-60"
+                >
+                  <InstagramIcon className="h-4 w-4" />
+                  Instagram
+                </a>
+                <a
+                  href={BIKE_TIKTOK_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`TikTok ${BIKE_TIKTOK_HANDLE}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-sm transition-opacity hover:opacity-60"
+                >
+                  <TikTokIcon className="h-4 w-4" />
+                  TikTok
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Rumah baru kopidisini — dokumentasi proses pembangunan.
+            Banner foto full-bleed seperti baris Our Process, teks
+            serif di atasnya; galeri foto lainnya di bawahnya. Foto
+            pertama dipakai sebagai banner, sisanya di galeri. */}
+        <section aria-label="Rumah baru kopidisini" className="w-full">
+          <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden sm:h-[70vh]">
+            <Image
+              src={NEW_HOME_PHOTOS[0].src}
+              alt={NEW_HOME_PHOTOS[0].alt}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+              <Reveal>
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/90 drop-shadow-md sm:text-sm">
+                  09 &middot; Our New Home
+                </p>
+                <h2 className="mx-auto mt-4 font-overlay text-4xl leading-[1.05] text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
+                  A Bigger Home.
+                </h2>
+              </Reveal>
             </div>
-          </Reveal>
+          </div>
+          <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-12 sm:pb-24 sm:pt-16">
+            <Reveal>
+              <p className="max-w-xl text-base leading-relaxed text-zinc-600">
+                kopidisini yang sekarang masih kecil. Bangunan lama ini
+                sedang kami bangun ulang menjadi rumah baru yang lebih
+                besar — ikuti prosesnya, dari desain sampai jadi.
+              </p>
+            </Reveal>
+            <ul className="mt-12 grid gap-4 sm:grid-cols-2">
+              {NEW_HOME_PHOTOS.slice(1).map((photo, index, items) => {
+                const wide = index === items.length - 1;
+                return (
+                  <li
+                    key={photo.src}
+                    className={wide ? "sm:col-span-2" : undefined}
+                  >
+                    <Reveal delay={index * 100}>
+                      <figure className="group">
+                        <div className="relative aspect-[16/9] overflow-hidden rounded-3xl">
+                          <Image
+                            src={photo.src}
+                            alt={photo.alt}
+                            fill
+                            sizes={
+                              wide
+                                ? "(max-width: 1152px) 100vw, 1152px"
+                                : "(max-width: 640px) 100vw, 50vw"
+                            }
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                        <figcaption className="mt-3 text-sm text-zinc-600">
+                          {photo.caption}
+                        </figcaption>
+                      </figure>
+                    </Reveal>
+                  </li>
+                );
+              })}
+            </ul>
+            <Reveal>
+              <p className="mt-10 text-base leading-relaxed text-zinc-600">
+                Video pembangunannya ada di Instagram kami.{" "}
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-bold text-black underline underline-offset-4 transition-opacity hover:opacity-60"
+                >
+                  Lihat di Instagram
+                </a>
+              </p>
+            </Reveal>
+          </div>
         </section>
       </main>
 

@@ -7,6 +7,24 @@ export const INSTAGRAM_URL = "https://www.instagram.com/kopidisini.official";
 export const INSTAGRAM_HANDLE = "@kopidisini.official";
 export const TIKTOK_URL = "https://www.tiktok.com/@kopidisini.official";
 export const TIKTOK_HANDLE = "@kopidisini.official";
+// Bike shop disini.bike: sudah beroperasi, satu lokasi dengan kedai.
+// Link terverifikasi dari bio Instagram @disini.bike (2026-11-17) dan
+// link TikTok yang dikirim pemilik (2026-11-17).
+export const BIKE_INSTAGRAM_URL = "https://www.instagram.com/disini.bike";
+export const BIKE_INSTAGRAM_HANDLE = "@disini.bike";
+export const BIKE_TIKTOK_URL = "https://www.tiktok.com/@disini.bike";
+export const BIKE_TIKTOK_HANDLE = "@disini.bike";
+// Video banner bike shop: pesepeda gunung di jalur hutan, dari Pexels
+// (lisensi gratis, sudah diverifikasi 2026-11-17: file 720p, 24 detik).
+// Diputar tanpa suara dan berulang; poster dipakai untuk
+// prefers-reduced-motion dan sebelum video dimuat. Ganti dengan video
+// asli disini.bike begitu tersedia.
+export const BIKE_VIDEO = {
+  src: "https://videos.pexels.com/video-files/8926441/8926441-hd_1280_720_25fps.mp4",
+  poster:
+    "https://images.pexels.com/photos/11049373/pexels-photo-11049373.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  posterAlt: "Pesepeda gunung menuruni jalur downhill berbatu.",
+};
 export const ADDRESS = "Jl. kiara payung no. A1, komp. AAF, Aceh Utara (Kab.)";
 
 export const ORDER_MODES = [
@@ -40,10 +58,6 @@ export const IMAGES = {
   barista: {
     src: "https://images.pexels.com/photos/30226644/pexels-photo-30226644.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     alt: "Barista sedang meracik kopi dengan mesin espresso.",
-  },
-  billiard: {
-    src: "https://images.pexels.com/photos/8724476/pexels-photo-8724476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    alt: "Bola billiard di atas meja billiard beserta stiknya.",
   },
   icedCoffee: {
     src: "https://images.pexels.com/photos/16550825/pexels-photo-16550825/free-photo-of-glass-of-coffee-on-table.jpeg?auto=compress&cs=tinysrgb&w=600&loading=lazy",
@@ -104,6 +118,32 @@ export const CUP_HOT_FALLBACK = {
   src: "https://images.pexels.com/photos/6772461/pexels-photo-6772461.jpeg?auto=compress&cs=tinysrgb&w=800&loading=lazy",
   alt: "Secangkir latte dengan latte art berbentuk hati.",
 };
+
+// Foto dokumentasi rumah baru kopidisini: desain dari 4Plan dan foto
+// progres pembangunan (file JPG di public/, ditambahkan lewat git oleh
+// pemilik repo; tidak bisa di-push lewat snapshot karena biner).
+export const NEW_HOME_PHOTOS = [
+  {
+    src: "/new-home-1.jpg",
+    alt: "Bangunan lama yang sedang dibangun ulang menjadi rumah baru kopidisini, tampak dari halaman rumput.",
+    caption: "Bangunan lama yang sedang dibangun ulang.",
+  },
+  {
+    src: "/new-home-2.jpg",
+    alt: "Tampak depan bangunan rumah baru kopidisini yang masih dalam proses pembangunan.",
+    caption: "Tampak depan — teras dan bukaan jendela besar.",
+  },
+  {
+    src: "/new-home-3.jpg",
+    alt: "Sisi bangunan rumah baru kopidisini yang masih dibangun, dengan tandon air dan area masuk.",
+    caption: "Sisi bangunan — tandon air dan area masuk.",
+  },
+  {
+    src: "/new-home-design-3d.jpg",
+    alt: "Desain 3D rumah baru kopidisini dari aplikasi 4Plan.",
+    caption: "Desain 3D dari 4Plan.",
+  },
+];
 
 // Tautan Google Maps untuk alamat kedai (pencarian berdasarkan alamat).
 export const MAPS_URL =
