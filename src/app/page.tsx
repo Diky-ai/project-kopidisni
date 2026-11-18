@@ -192,6 +192,26 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
+// Ikon pin lokasi untuk tautan Google Maps di footer. Bentuknya
+// sama dengan ikon Location di navigasi bawah.
+function MapPinIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21Z" />
+      <circle cx="12" cy="10.5" r="2.2" />
+    </svg>
+  );
+}
+
 // Dua ikon akun sosial media yang bisa diklik. Warna mengikuti
 // elemen pembungkus (currentColor).
 function SocialLinks({ className }: { className?: string }) {
@@ -765,35 +785,8 @@ export default function Home() {
               Drop By, Or Order From Anywhere.
             </h2>
           </Reveal>
-          <div className="mt-12 grid overflow-hidden rounded-[2rem] border-2 border-black lg:grid-cols-2">
-            <Reveal className="bg-black p-6 text-white sm:p-10">
-              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
-                Our Address
-              </h3>
-              <address className="mt-4 font-display text-2xl font-bold leading-snug not-italic">
-                {ADDRESS}, Indonesia
-              </address>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-400">
-                Datang untuk kopinya, tinggal untuk suasananya. Suasana kami
-                hangat, modern, dan ramah untuk semua kalangan.
-              </p>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-400">
-                Jam buka akan diumumkan di sini. Untuk kabar terbaru, pantau
-                akun kami:
-              </p>
-              <SocialLinks className="mt-4 text-white" />
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href={MAPS_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-12 items-center rounded-full border-2 border-white px-7 py-3 text-base font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-black active:scale-95"
-                >
-                  Lihat di Google Maps
-                </a>
-              </div>
-            </Reveal>
-            <Reveal delay={120} className="bg-white p-6 sm:p-10">
+          <div className="mt-12 overflow-hidden rounded-[2rem] border-2 border-black">
+            <Reveal className="bg-white p-6 sm:p-10">
               <ul className="divide-y divide-zinc-200">
                 {ORDER_MODES.map((mode, index) => (
                   <li key={mode.name} className="flex gap-6 py-6 first:pt-0 last:pb-0">
@@ -815,8 +808,8 @@ export default function Home() {
 
         {/* Rumah baru kopidisini — dokumentasi proses pembangunan.
             Banner foto full-bleed seperti baris Our Process, teks
-            serif di atasnya; galeri foto lainnya di bawahnya. Foto
-            pertama dipakai sebagai banner, sisanya di galeri. */}
+            serif di atasnya; tiga foto lainnya digabung dalam satu
+            frame di bawahnya. Foto pertama dipakai sebagai banner. */}
         <section aria-label="Rumah baru kopidisini" className="w-full">
           <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden sm:h-[70vh]">
             <Image
@@ -850,38 +843,29 @@ export default function Home() {
                 besar — ikuti prosesnya, dari desain sampai jadi.
               </p>
             </Reveal>
-            <ul className="mt-12 grid gap-4 sm:grid-cols-2">
-              {NEW_HOME_PHOTOS.slice(1).map((photo, index, items) => {
-                const wide = index === items.length - 1;
-                return (
-                  <li
-                    key={photo.src}
-                    className={wide ? "sm:col-span-2" : undefined}
-                  >
-                    <Reveal delay={index * 100}>
-                      <figure className="group">
-                        <div className="relative aspect-[16/9] overflow-hidden rounded-3xl">
-                          <Image
-                            src={photo.src}
-                            alt={photo.alt}
-                            fill
-                            sizes={
-                              wide
-                                ? "(max-width: 1152px) 100vw, 1152px"
-                                : "(max-width: 640px) 100vw, 50vw"
-                            }
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                        </div>
-                        <figcaption className="mt-3 text-sm text-zinc-600">
-                          {photo.caption}
-                        </figcaption>
-                      </figure>
-                    </Reveal>
-                  </li>
-                );
-              })}
-            </ul>
+            <Reveal>
+              <figure className="mt-12">
+                <div className="grid grid-cols-3 gap-[2px] overflow-hidden rounded-3xl bg-white">
+                  {NEW_HOME_PHOTOS.slice(1).map((photo) => (
+                    <div
+                      key={photo.src}
+                      className="relative aspect-[3/4] sm:aspect-[4/3]"
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        sizes="(max-width: 640px) 33vw, (max-width: 1152px) 33vw, 384px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <figcaption className="mt-3 text-sm text-zinc-600">
+                  Dari gambar desain ke bangunan nyata.
+                </figcaption>
+              </figure>
+            </Reveal>
             <Reveal>
               <p className="mt-10 text-base leading-relaxed text-zinc-600">
                 Video pembangunannya ada di Instagram kami.{" "}
@@ -953,6 +937,15 @@ export default function Home() {
                     </a>
                   </li>
                 </ul>
+                <a
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Lihat di Google Maps"
+                  className="mt-6 inline-block text-white transition-opacity hover:opacity-60"
+                >
+                  <MapPinIcon className="h-6 w-6" />
+                </a>
               </div>
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
@@ -961,11 +954,6 @@ export default function Home() {
                 <ul className="mt-4 space-y-3">
                   <li>
                     <SocialLinks className="text-white" />
-                  </li>
-                  <li>
-                    <a href={MAPS_URL} target="_blank" rel="noreferrer" className="hover:underline">
-                      Google Maps
-                    </a>
                   </li>
                 </ul>
               </div>
