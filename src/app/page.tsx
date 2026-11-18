@@ -906,6 +906,15 @@ export default function Home() {
                 {ADDRESS}, Indonesia. Pemesanan dilayani lewat halaman
                 pesanan kami.
               </p>
+              <a
+                href={MAPS_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-white transition-opacity hover:opacity-60"
+              >
+                Lokasi disini
+                <MapPinIcon className="h-5 w-5" />
+              </a>
             </div>
             <nav
               aria-label="Tautan footer"
@@ -937,15 +946,6 @@ export default function Home() {
                     </a>
                   </li>
                 </ul>
-                <a
-                  href={MAPS_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Lihat di Google Maps"
-                  className="mt-6 inline-block text-white transition-opacity hover:opacity-60"
-                >
-                  <MapPinIcon className="h-6 w-6" />
-                </a>
               </div>
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">

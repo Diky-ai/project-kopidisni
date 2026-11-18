@@ -25,13 +25,19 @@ const CATEGORY_LABELS: Record<MenuCategory, string> = {
   JAJANDISINI: "JajanDisini",
 };
 
+// Jumlah menu yang tampil sebelum tombol "Lihat Selengkapnya"
+// ditekan — supaya section menu tidak memakan terlalu banyak ruang.
+const INITIAL_COUNT = 6;
+
 export default function MenuSection() {
   const [filter, setFilter] = useState<MenuCategory | "SEMUA">("SEMUA");
+  const [expanded, setExpanded] = useState(false);
   const reduceMotion = useReducedMotion();
   const visible =
     filter === "SEMUA"
       ? MENU_ITEMS
       : MENU_ITEMS.filter((item) => item.category === filter);
+  const shown = expanded ? visible : visible.slice(0, INITIAL_COUNT);
 
   return (
     <section id="menu" className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
@@ -62,7 +68,10 @@ export default function MenuSection() {
               type="button"
               role="tab"
               aria-selected={active}
-              onClick={() => setFilter(option.value)}
+              onClick={() => {
+                setFilter(option.value);
+                setExpanded(false);
+              }}
               className={
                 active
                   ? "relative -mb-px shrink-0 whitespace-nowrap pb-3 text-sm font-bold text-black"
@@ -89,7 +98,7 @@ export default function MenuSection() {
         key={filter}
         className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4"
       >
-        {visible.map((item, index) => {
+        {shown.map((item, index) => {
           const image = imageForMenuItem(item);
           return (
             <motion.li
@@ -135,8 +144,21 @@ export default function MenuSection() {
         })}
       </ul>
 
+      {visible.length > INITIAL_COUNT ? (
+        <div className="mt-10 text-center">
+          <button
+            type="button"
+            onClick={() => setExpanded((value) => !value)}
+            aria-expanded={expanded}
+            className="inline-flex min-h-12 items-center rounded-full border-2 border-black bg-black px-7 py-3 text-base font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-black active:scale-95"
+          >
+            {expanded ? "Lihat Lebih Sedikit" : "Lihat Selengkapnya"}
+          </button>
+        </div>
+      ) : null}
+
       <p aria-live="polite" className="mt-8 text-sm text-zinc-500">
-        Menampilkan {visible.length} dari {MENU_ITEMS.length} menu. Bubuk
+        Menampilkan {shown.length} dari {MENU_ITEMS.length} menu. Bubuk
         dan biji kopi tersedia dalam kemasan 250g, 500g, dan 1000g.
       </p>
     </section>
