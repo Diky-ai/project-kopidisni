@@ -684,11 +684,83 @@ export default function Home() {
           </ul>
         </section>
 
+        {/* Banner bike shop disini.bike — video full-bleed seperti
+            baris Our Process, teks serif di atasnya. Kalau pengguna
+            meminta gerakan dikurangi, yang tampil hanya foto
+            posternya. */}
+        <section
+          aria-label="disini.bike, bike shop"
+          className="relative h-[60vh] min-h-[420px] w-full overflow-hidden sm:h-[70vh]"
+        >
+          <div className="absolute inset-0 bg-zinc-800">
+            <Image
+              src={BIKE_VIDEO.poster}
+              alt={BIKE_VIDEO.posterAlt}
+              fill
+              sizes="100vw"
+              className="object-cover motion-safe:hidden"
+            />
+            <video
+              src={BIKE_VIDEO.src}
+              poster={BIKE_VIDEO.poster}
+              aria-label={BIKE_VIDEO.posterAlt}
+              muted
+              loop
+              autoPlay
+              playsInline
+              preload="metadata"
+              className="h-full w-full object-cover motion-reduce:hidden"
+            />
+          </div>
+          <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white">
+            <Reveal>
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/90 drop-shadow-md sm:text-sm">
+                06 &middot; Bike Shop
+              </p>
+              <h2 className="mx-auto mt-4 font-overlay text-4xl leading-[1.05] text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
+                disini.bike.
+              </h2>
+              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/85 drop-shadow-md">
+                Upgrade dan restorasi sepedamu #disiniaja. Sepeda
+                rakitan, perawatan, dan konsultasi — dari MTB dan
+                downhill sampai commuter bike.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={BIKE_INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Instagram ${BIKE_INSTAGRAM_HANDLE}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-sm transition-opacity hover:opacity-60"
+                >
+                  <InstagramIcon className="h-4 w-4" />
+                  Instagram
+                </a>
+                <a
+                  href={BIKE_TIKTOK_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`TikTok ${BIKE_TIKTOK_HANDLE}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-sm transition-opacity hover:opacity-60"
+                >
+                  <TikTokIcon className="h-4 w-4" />
+                  TikTok
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
         <MenuSection />
 
         <section id="lokasi" className="mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-24">
           <Reveal>
-            <Eyebrow>07 &middot; Visit Us</Eyebrow>
+            <Eyebrow>08 &middot; Visit Us</Eyebrow>
             <h2 className="mt-6 max-w-xl font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl">
               Drop By, Or Order From Anywhere.
             </h2>
@@ -737,78 +809,6 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Banner bike shop disini.bike — video full-bleed seperti
-            baris Our Process, teks serif di atasnya. Kalau pengguna
-            meminta gerakan dikurangi, yang tampil hanya foto
-            posternya. */}
-        <section
-          aria-label="disini.bike, bike shop"
-          className="relative h-[60vh] min-h-[420px] w-full overflow-hidden sm:h-[70vh]"
-        >
-          <div className="absolute inset-0 bg-zinc-800">
-            <Image
-              src={BIKE_VIDEO.poster}
-              alt={BIKE_VIDEO.posterAlt}
-              fill
-              sizes="100vw"
-              className="object-cover motion-safe:hidden"
-            />
-            <video
-              src={BIKE_VIDEO.src}
-              poster={BIKE_VIDEO.poster}
-              aria-label={BIKE_VIDEO.posterAlt}
-              muted
-              loop
-              autoPlay
-              playsInline
-              preload="metadata"
-              className="h-full w-full object-cover motion-reduce:hidden"
-            />
-          </div>
-          <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white">
-            <Reveal>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/90 drop-shadow-md sm:text-sm">
-                08 &middot; Bike Shop
-              </p>
-              <h2 className="mx-auto mt-4 font-overlay text-4xl leading-[1.05] text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
-                disini.bike.
-              </h2>
-              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/85 drop-shadow-md">
-                Upgrade dan restorasi sepedamu #disiniaja. Sepeda
-                rakitan, perawatan, dan konsultasi — dari MTB dan
-                downhill sampai commuter bike.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href={BIKE_INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Instagram ${BIKE_INSTAGRAM_HANDLE}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-sm transition-opacity hover:opacity-60"
-                >
-                  <InstagramIcon className="h-4 w-4" />
-                  Instagram
-                </a>
-                <a
-                  href={BIKE_TIKTOK_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`TikTok ${BIKE_TIKTOK_HANDLE}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/30 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-sm transition-opacity hover:opacity-60"
-                >
-                  <TikTokIcon className="h-4 w-4" />
-                  TikTok
-                </a>
-              </div>
             </Reveal>
           </div>
         </section>

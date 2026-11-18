@@ -37,7 +37,7 @@ export default function MenuSection() {
     <section id="menu" className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
       <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
         <span aria-hidden="true" className="h-px w-10 bg-black" />
-        06 &middot; Our Menu
+        07 &middot; Our Menu
       </p>
       <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
         <h2 className="font-head text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl">
