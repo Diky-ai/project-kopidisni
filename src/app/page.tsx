@@ -410,7 +410,7 @@ export default function Home() {
         </section>
 
         <section id="tentang" className="bg-zinc-100">
-          <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
+          <div className="mx-auto w-full max-w-6xl px-6 pt-16 sm:pt-24">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
               <Reveal className="lg:col-span-8">
                 <Eyebrow>01 &middot; About Us</Eyebrow>
@@ -440,6 +440,71 @@ export default function Home() {
                 </div>
               </Reveal>
             </div>
+
+          </div>
+
+          {/* Rumah baru kopidisini — digabung di About Us, di atas
+              Our Journey. Foto bangunan full-bleed rata kiri-kanan
+              seperti banner sebelumnya, teks serif di atasnya; tiga
+              foto lainnya digabung dalam satu frame di bawahnya. */}
+          <Reveal className="mt-20">
+            <div className="relative h-[320px] w-full overflow-hidden sm:h-[420px]">
+              <Image
+                src={NEW_HOME_PHOTOS[0].src}
+                alt={NEW_HOME_PHOTOS[0].alt}
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-black/30"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/90 drop-shadow-md sm:text-sm">
+                  Our New Home
+                </p>
+                <h2 className="mx-auto mt-4 font-overlay text-4xl leading-[1.05] text-white drop-shadow-lg sm:text-5xl">
+                  A Bigger Home.
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+          <div className="mx-auto w-full max-w-6xl px-6 pb-16 sm:pb-24">
+            <Reveal>
+              <p className="mt-10 max-w-xl text-base leading-relaxed text-zinc-600">
+                Perjalanan itu berlanjut. Bangunan lama kami sedang
+                dibangun ulang menjadi rumah baru yang lebih besar —
+                inilah prosesnya, dari awal sampai sekarang.
+              </p>
+            </Reveal>
+            <Reveal>
+              <figure className="mt-12">
+                <div className="grid grid-cols-3 gap-[2px] overflow-hidden rounded-3xl bg-white">
+                  {NEW_HOME_PHOTOS.slice(1).map((photo) => (
+                    <div
+                      key={photo.src}
+                      className="relative aspect-[3/4] sm:aspect-[4/3]"
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        sizes="(max-width: 640px) 33vw, (max-width: 1152px) 33vw, 384px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <figcaption className="mt-3 text-sm text-zinc-600">
+                  Dari gambar desain ke bangunan nyata.
+                </figcaption>
+              </figure>
+            </Reveal>
 
             <div className="mt-20">
               <Reveal>
@@ -806,81 +871,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Rumah baru kopidisini — dokumentasi proses pembangunan.
-            Banner foto full-bleed seperti baris Our Process, teks
-            serif di atasnya; tiga foto lainnya digabung dalam satu
-            frame di bawahnya. Foto pertama dipakai sebagai banner. */}
-        <section aria-label="Rumah baru kopidisini" className="w-full">
-          <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden sm:h-[70vh]">
-            <Image
-              src={NEW_HOME_PHOTOS[0].src}
-              alt={NEW_HOME_PHOTOS[0].alt}
-              fill
-              sizes="100vw"
-              className="object-cover"
-            />
-            <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-              <Reveal>
-                <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/90 drop-shadow-md sm:text-sm">
-                  09 &middot; Our New Home
-                </p>
-                <h2 className="mx-auto mt-4 font-overlay text-4xl leading-[1.05] text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
-                  A Bigger Home.
-                </h2>
-              </Reveal>
-            </div>
-          </div>
-          <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-12 sm:pb-24 sm:pt-16">
-            <Reveal>
-              <p className="max-w-xl text-base leading-relaxed text-zinc-600">
-                kopidisini yang sekarang masih kecil. Bangunan lama ini
-                sedang kami bangun ulang menjadi rumah baru yang lebih
-                besar — ikuti prosesnya, dari desain sampai jadi.
-              </p>
-            </Reveal>
-            <Reveal>
-              <figure className="mt-12">
-                <div className="grid grid-cols-3 gap-[2px] overflow-hidden rounded-3xl bg-white">
-                  {NEW_HOME_PHOTOS.slice(1).map((photo) => (
-                    <div
-                      key={photo.src}
-                      className="relative aspect-[3/4] sm:aspect-[4/3]"
-                    >
-                      <Image
-                        src={photo.src}
-                        alt={photo.alt}
-                        fill
-                        sizes="(max-width: 640px) 33vw, (max-width: 1152px) 33vw, 384px"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <figcaption className="mt-3 text-sm text-zinc-600">
-                  Dari gambar desain ke bangunan nyata.
-                </figcaption>
-              </figure>
-            </Reveal>
-            <Reveal>
-              <p className="mt-10 text-base leading-relaxed text-zinc-600">
-                Video pembangunannya ada di Instagram kami.{" "}
-                <a
-                  href={INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-bold text-black underline underline-offset-4 transition-opacity hover:opacity-60"
-                >
-                  Lihat di Instagram
-                </a>
-              </p>
-            </Reveal>
-          </div>
-        </section>
       </main>
 
       <footer className="bg-black text-white">
