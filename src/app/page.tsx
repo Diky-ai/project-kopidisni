@@ -488,7 +488,7 @@ export default function Home() {
                   {NEW_HOME_PHOTOS.slice(1).map((photo) => (
                     <div
                       key={photo.src}
-                      className="relative aspect-[3/4] sm:aspect-[4/3]"
+                      className="relative aspect-video"
                     >
                       <Image
                         src={photo.src}
@@ -501,7 +501,7 @@ export default function Home() {
                   ))}
                 </div>
                 <figcaption className="mt-3 text-sm text-zinc-600">
-                  Dari gambar desain ke bangunan nyata.
+                  Progres terbaru dari lokasi pembangunan.
                 </figcaption>
               </figure>
             </Reveal>

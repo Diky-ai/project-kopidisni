@@ -119,25 +119,25 @@ export const CUP_HOT_FALLBACK = {
   alt: "Secangkir latte dengan latte art berbentuk hati.",
 };
 
-// Foto dokumentasi rumah baru kopidisini: gambar desain dan foto
-// progres pembangunan (file JPG di public/, ditambahkan lewat git oleh
-// pemilik repo; tidak bisa di-push lewat snapshot karena biner).
+// Foto dokumentasi rumah baru kopidisini: foto progres pembangunan
+// terbaru (file JPG di public/, ditambahkan lewat git oleh pemilik
+// repo; tidak bisa di-push lewat snapshot karena biner).
 export const NEW_HOME_PHOTOS = [
   {
     src: "/new-home-1.jpg",
-    alt: "Bangunan lama yang sedang dibangun ulang menjadi rumah baru kopidisini, tampak dari halaman rumput.",
+    alt: "Tampak depan rumah baru kopidisini yang sedang dibangun ulang, dilihat dari halaman rumput.",
   },
   {
     src: "/new-home-2.jpg",
-    alt: "Tampak depan bangunan rumah baru kopidisini yang masih dalam proses pembangunan.",
+    alt: "Halaman dan sisi bangunan rumah baru kopidisini, seorang pekerja sedang membersihkan area.",
   },
   {
     src: "/new-home-3.jpg",
-    alt: "Sisi bangunan rumah baru kopidisini yang masih dibangun, dengan tandon air dan area masuk.",
+    alt: "Tampak depan rumah baru kopidisini dari jalan, dengan area parkir beratap.",
   },
   {
-    src: "/new-home-design-3d.jpg",
-    alt: "Gambar desain 3D rumah baru kopidisini.",
+    src: "/new-home-4.jpg",
+    alt: "Bagian dalam rumah baru kopidisini yang masih dalam tahap pembangunan.",
   },
 ];
 

@@ -27,7 +27,7 @@ const CATEGORY_LABELS: Record<MenuCategory, string> = {
 
 // Jumlah menu yang tampil sebelum tombol "Lihat Selengkapnya"
 // ditekan — supaya section menu tidak memakan terlalu banyak ruang.
-const INITIAL_COUNT = 6;
+const INITIAL_COUNT = 4;
 
 export default function MenuSection() {
   const [filter, setFilter] = useState<MenuCategory | "SEMUA">("SEMUA");
@@ -96,7 +96,7 @@ export default function MenuSection() {
 
       <ul
         key={filter}
-        className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4"
+        className="mt-10 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 xl:grid-cols-4"
       >
         {shown.map((item, index) => {
           const image = imageForMenuItem(item);
@@ -112,9 +112,9 @@ export default function MenuSection() {
                 delay: Math.min(index, 7) * 0.05,
                 ease: [0.34, 1.4, 0.64, 1],
               }}
-              className="group overflow-hidden rounded-3xl border border-zinc-200 bg-white transition-[box-shadow,translate] duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="group overflow-hidden rounded-xl border border-zinc-200 bg-white transition-[box-shadow,translate] duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[2/1] overflow-hidden sm:aspect-[16/9]">
                 <Image
                   src={image.src}
                   alt={item.name}
@@ -123,19 +123,19 @@ export default function MenuSection() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {item.signature ? (
-                  <span className="absolute left-3 top-3 rounded-full bg-black px-2.5 py-1 text-[11px] font-bold text-white shadow-sm">
+                  <span className="absolute left-1.5 top-1.5 rounded-full bg-black px-1.5 py-0.5 text-[8px] font-bold text-white shadow-sm sm:text-[9px]">
                     Signature
                   </span>
                 ) : null}
               </div>
-              <div className="p-4">
-                <h3 className="font-display text-base font-bold leading-snug sm:text-lg">
+              <div className="p-2 sm:p-2.5">
+                <h3 className="font-display text-xs font-bold leading-snug sm:text-sm">
                   {item.name}
                 </h3>
-                <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+                <p className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.2em] text-zinc-400 sm:text-[9px]">
                   {CATEGORY_LABELS[item.category]}
                 </p>
-                <p className="mt-2 whitespace-nowrap text-sm font-bold tabular-nums sm:text-base">
+                <p className="mt-1 whitespace-nowrap text-[11px] font-bold tabular-nums sm:mt-1.5 sm:text-[13px]">
                   {formatPrice(item.price)}
                 </p>
               </div>
